@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/whyrusleeping/js-mafmt/issues"
   },
-  "homepage": "https://github.com/whyrusleeping/js-mafmt#readme"
+  "homepage": "https://github.com/whyrusleeping/js-mafmt#readme",
+  "devDependencies": {
+    "tape": "^4.4.0"
+  },
+  "dependencies": {
+    "multiaddr": "^1.1.1"
+  }
 }
