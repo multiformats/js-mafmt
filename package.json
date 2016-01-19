@@ -1,0 +1,22 @@
+{
+  "name": "js-mafmt",
+  "version": "1.0.0",
+  "description": "A multiaddr validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whyrusleeping/js-mafmt.git"
+  },
+  "keywords": [
+    "multiaddr"
+  ],
+  "author": "whyrusleeping",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/whyrusleeping/js-mafmt/issues"
+  },
+  "homepage": "https://github.com/whyrusleeping/js-mafmt#readme"
+}
