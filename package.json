@@ -2,10 +2,15 @@
   "name": "js-mafmt",
   "version": "1.0.1",
   "description": "A multiaddr validator",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "node test.js"
+    "lint": "standard",
+    "test": "node tests/test.js"
   },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/whyrusleeping/js-mafmt.git"
@@ -20,6 +25,8 @@
   },
   "homepage": "https://github.com/whyrusleeping/js-mafmt#readme",
   "devDependencies": {
+    "pre-commit": "^1.1.2",
+    "standard": "^5.4.1",
     "tape": "^4.4.0"
   },
   "dependencies": {
