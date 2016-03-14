@@ -26,10 +26,10 @@
   "homepage": "https://github.com/whyrusleeping/js-mafmt#readme",
   "devDependencies": {
     "pre-commit": "^1.1.2",
-    "standard": "^5.4.1",
+    "standard": "^6.0.8",
     "tape": "^4.4.0"
   },
   "dependencies": {
-    "multiaddr": "^1.1.1"
+    "multiaddr": "^1.3.0"
   }
 }
