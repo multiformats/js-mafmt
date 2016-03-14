@@ -1,5 +1,5 @@
 {
-  "name": "js-mafmt",
+  "name": "mafmt",
   "version": "1.0.1",
   "description": "A multiaddr validator",
   "main": "src/index.js",
