@@ -1,3 +1,5 @@
+'use strict'
+
 var multiaddr = require('multiaddr')
 
 var IP = or(base('ip4'), base('ip6'))
