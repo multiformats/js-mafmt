@@ -3,10 +3,10 @@
 var multiaddr = require('multiaddr')
 
 var IP = or(base('ip4'), base('ip6'))
-var TCP = and(IP, base('tcp'))
-var UDP = and(IP, base('udp'))
-var UTP = and(UDP, base('utp'))
-var WebSockets = and(TCP, base('websockets'))
+var TCP = and(IP, base('tcp', 'ipfs'))
+var UDP = and(IP, base('udp', 'ipfs'))
+var UTP = and(UDP, base('utp', 'ipfs'))
+var WebSockets = and(TCP, base('websockets', 'ipfs'))
 var Reliable = or(TCP, UTP)
 var IPFS = and(Reliable, base('ipfs'))
 
@@ -89,7 +89,7 @@ function or () {
   }
 }
 
-function base (n) {
+function base (n, opt) {
   var name = n
   function matches (a) {
     if (typeof a === 'string') {
@@ -100,6 +100,13 @@ function base (n) {
     if (pnames.length === 1 && pnames[0] === name) {
       return true
     }
+
+    if (pnames.length === 2 &&
+        pnames[0] === name &&
+        pnames[1] === opt) {
+      return true
+    }
+
     return false
   }
 
@@ -108,9 +115,16 @@ function base (n) {
       return null
     }
 
+    if (protos[0] === name &&
+        protos.length > 1 &&
+        protos[1] === opt) {
+      return protos.slice(2)
+    }
+
     if (protos[0] === name) {
       return protos.slice(1)
     }
+
     return null
   }
 
