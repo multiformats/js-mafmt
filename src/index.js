@@ -6,7 +6,7 @@ var IP = or(base('ip4'), base('ip6'))
 var TCP = and(IP, base('tcp'))
 var UDP = and(IP, base('udp'))
 var UTP = and(UDP, base('utp'))
-var WebSockets = and(TCP, base('websockets'))
+var WebSockets = and(TCP, base('ws'))
 var Reliable = or(TCP, UTP)
 var IPFS = and(Reliable, base('ipfs'))
 
