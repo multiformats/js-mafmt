@@ -6,54 +6,54 @@ var mafmt = require('./../src')
 
 describe('multiaddr validation', function () {
   it('basic stuff works', function () {
-    var good_ip = [
+    var goodIP = [
       '/ip4/0.0.0.0',
       '/ip6/fc00::'
     ]
 
-    var bad_ip = [
+    var badIP = [
       '/ip4/0.0.0.0/tcp/555',
       '/udp/789/ip6/fc00::'
     ]
 
-    var good_tcp = [
+    var goodTCP = [
       '/ip4/0.0.7.6/tcp/1234',
       '/ip6/::/tcp/0'
     ]
 
-    var bad_tcp = [
+    var badTCP = [
       '/tcp/12345',
       '/ip6/fc00::/udp/5523/tcp/9543'
     ]
 
-    var good_udp = [
+    var goodUDP = [
       '/ip4/0.0.7.6/udp/1234',
       '/ip6/::/udp/0'
     ]
 
-    var bad_udp = [
+    var badUDP = [
       '/udp/12345',
       '/ip6/fc00::/tcp/5523/udp/9543'
     ]
 
-    var good_utp = [
+    var goodUTP = [
       '/ip4/1.2.3.4/udp/3456/utp',
       '/ip6/::/udp/0/utp'
     ]
 
-    var bad_utp = [
+    var badUTP = [
       '/ip4/0.0.0.0/tcp/12345/utp',
       '/ip6/::/ip4/0.0.0.0/udp/1234/utp'
     ]
 
-    var good_websockets = [
-      '/ip4/1.2.3.4/tcp/3456/websockets',
-      '/ip6/::/tcp/0/websockets'
+    var goodWS = [
+      '/ip4/1.2.3.4/tcp/3456/ws',
+      '/ip6/::/tcp/0/ws'
     ]
 
-    var bad_websockets = [
-      '/ip4/0.0.0.0/tcp/12345/udp/2222/websockets',
-      '/ip6/::/ip4/0.0.0.0/udp/1234/websockets'
+    var badWS = [
+      '/ip4/0.0.0.0/tcp/12345/udp/2222/ws',
+      '/ip6/::/ip4/0.0.0.0/udp/1234/ws'
     ]
 
     function assertMatches (p) {
@@ -74,22 +74,22 @@ describe('multiaddr validation', function () {
       })
     }
 
-    assertMatches(mafmt.IP, good_ip)
-    assertMismatches(mafmt.IP, bad_ip, good_tcp)
+    assertMatches(mafmt.IP, goodIP)
+    assertMismatches(mafmt.IP, badIP, goodTCP)
 
-    assertMatches(mafmt.TCP, good_tcp)
-    assertMismatches(mafmt.TCP, bad_tcp, good_ip)
+    assertMatches(mafmt.TCP, goodTCP)
+    assertMismatches(mafmt.TCP, badTCP, goodIP)
 
-    assertMatches(mafmt.UDP, good_udp)
-    assertMismatches(mafmt.UDP, bad_udp, good_ip, good_tcp, good_utp)
+    assertMatches(mafmt.UDP, goodUDP)
+    assertMismatches(mafmt.UDP, badUDP, goodIP, goodTCP, goodUTP)
 
-    assertMatches(mafmt.UTP, good_utp)
-    assertMismatches(mafmt.UTP, bad_utp, good_ip, good_tcp, good_udp)
+    assertMatches(mafmt.UTP, goodUTP)
+    assertMismatches(mafmt.UTP, badUTP, goodIP, goodTCP, goodUDP)
 
-    assertMatches(mafmt.Reliable, good_utp, good_tcp)
-    assertMismatches(mafmt.Reliable, good_ip, good_udp)
+    assertMatches(mafmt.Reliable, goodUTP, goodTCP)
+    assertMismatches(mafmt.Reliable, goodIP, goodUDP)
 
-    assertMatches(mafmt.WebSockets, good_websockets)
-    assertMismatches(mafmt.WebSockets, good_ip, good_udp, bad_websockets)
+    assertMatches(mafmt.WebSockets, goodWS)
+    assertMismatches(mafmt.WebSockets, goodIP, goodUDP, badWS)
   })
 })
