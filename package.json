@@ -1,6 +1,6 @@
 {
   "name": "mafmt",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "A multiaddr validator",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
