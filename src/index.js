@@ -7,7 +7,7 @@ var TCP = and(IP, base('tcp'))
 var UDP = and(IP, base('udp'))
 var UTP = and(UDP, base('utp'))
 var WebSockets = and(TCP, base('ws'))
-var WebRTCStar = and(base('libp2p-webrtc-star'), WebSockets)
+var WebRTCStar = and(base('libp2p-webrtc-star'), WebSockets, base('ipfs'))
 var Reliable = or(TCP, UTP)
 var IPFS = and(Reliable, base('ipfs'))
 
@@ -38,7 +38,6 @@ function and () {
     if (a.length < args.length) {
       return null
     }
-
     args.some(function (arg) {
       a = arg.partialMatch(a)
       if (a === null) {

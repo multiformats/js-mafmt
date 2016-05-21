@@ -52,8 +52,8 @@ describe('multiaddr validation', function () {
     ]
 
     var goodWebRTCStar = [
-      '/libp2p-webrtc-star/ip4/1.2.3.4/tcp/3456/ws',
-      '/libp2p-webrtc-star/ip6/::/tcp/0/ws'
+      '/libp2p-webrtc-star/ip4/1.2.3.4/tcp/3456/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+      '/libp2p-webrtc-star/ip6/::/tcp/0/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo5'
     ]
 
     var badWS = [
