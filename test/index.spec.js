@@ -51,6 +51,11 @@ describe('multiaddr validation', function () {
       '/ip6/::/tcp/0/ws'
     ]
 
+    var goodWebRTCStar = [
+      '/libp2p-webrtc-star/ip4/1.2.3.4/tcp/3456/ws',
+      '/libp2p-webrtc-star/ip6/::/tcp/0/ws'
+    ]
+
     var badWS = [
       '/ip4/0.0.0.0/tcp/12345/udp/2222/ws',
       '/ip6/::/ip4/0.0.0.0/udp/1234/ws'
@@ -91,5 +96,8 @@ describe('multiaddr validation', function () {
 
     assertMatches(mafmt.WebSockets, goodWS)
     assertMismatches(mafmt.WebSockets, goodIP, goodUDP, badWS)
+
+    assertMatches(mafmt.WebRTCStar, goodWebRTCStar)
+    assertMismatches(mafmt.WebRTCStar, goodIP, goodUDP, badWS)
   })
 })
