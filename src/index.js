@@ -7,6 +7,7 @@ var TCP = and(IP, base('tcp'))
 var UDP = and(IP, base('udp'))
 var UTP = and(UDP, base('utp'))
 var WebSockets = and(TCP, base('ws'))
+var WebRTCStar = and(base('libp2p-webrtc-star'), WebSockets)
 var Reliable = or(TCP, UTP)
 var IPFS = and(Reliable, base('ipfs'))
 
@@ -15,6 +16,7 @@ exports.TCP = TCP
 exports.UDP = UDP
 exports.UTP = UTP
 exports.WebSockets = WebSockets
+exports.WebRTCStar = WebRTCStar
 exports.Reliable = Reliable
 exports.IPFS = IPFS
 
