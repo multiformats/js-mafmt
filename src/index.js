@@ -8,8 +8,15 @@ var UDP = and(IP, base('udp'))
 var UTP = and(UDP, base('utp'))
 var WebSockets = and(TCP, base('ws'))
 var WebRTCStar = and(base('libp2p-webrtc-star'), WebSockets, base('ipfs'))
-var Reliable = or(TCP, UTP)
-var IPFS = and(Reliable, base('ipfs'))
+var Reliable = or(WebSockets, TCP, UTP)
+
+// required cause some transports are already IPFS aware (like WebRTCStar)
+var IPFS = {
+  matches: function (args) {
+    var IPFS = and(Reliable, base('ipfs'))
+    return IPFS.matches(args) || WebRTCStar.matches(args)
+  }
+}
 
 exports.IP = IP
 exports.TCP = TCP
@@ -82,12 +89,14 @@ function or () {
     return out
   }
 
-  return {
+  var result = {
     toString: function () { return '{ ' + args.join(' ') + ' }' },
     input: args,
     matches: matches,
     partialMatch: partialMatch
   }
+
+  return result
 }
 
 function base (n) {
