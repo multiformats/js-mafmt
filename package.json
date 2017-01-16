@@ -39,7 +39,7 @@
     "pre-commit": "^1.2.2"
   },
   "dependencies": {
-    "multiaddr": "^2.1.1"
+    "multiaddr": "^2.1.3"
   },
   "contributors": [
     "David Dias <daviddias.p@gmail.com>",

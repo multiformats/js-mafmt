@@ -7,7 +7,9 @@ var TCP = and(IP, base('tcp'))
 var UDP = and(IP, base('udp'))
 var UTP = and(UDP, base('utp'))
 var WebSockets = and(TCP, base('ws'))
+var HTTP = and(TCP, base('http'))
 var WebRTCStar = and(base('libp2p-webrtc-star'), WebSockets, base('ipfs'))
+var WebRTCDirect = and(base('libp2p-webrtc-direct'), HTTP)
 var Reliable = or(WebSockets, TCP, UTP)
 
 // required cause some transports are already IPFS aware (like WebRTCStar)
@@ -22,8 +24,10 @@ exports.IP = IP
 exports.TCP = TCP
 exports.UDP = UDP
 exports.UTP = UTP
+exports.HTTP = HTTP
 exports.WebSockets = WebSockets
 exports.WebRTCStar = WebRTCStar
+exports.WebRTCDirect = WebRTCDirect
 exports.Reliable = Reliable
 exports.IPFS = IPFS
 
