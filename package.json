@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/whyrusleeping/js-mafmt#readme",
   "devDependencies": {
-    "aegir": "^9.3.0",
+    "aegir": "^9.3.2",
     "chai": "^3.5.0",
     "pre-commit": "^1.2.2"
   },
