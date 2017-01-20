@@ -57,10 +57,16 @@ describe('multiaddr validation', function () {
     '/ip6/::/tcp/0/ws'
   ]
 
+  const goodWSS = [
+    '/dns/ipfs.io/wss',
+    '/ip4/1.2.3.4/tcp/3456/wss',
+    '/ip6/::/tcp/0/wss'
+  ]
+
   const goodWebRTCStar = [
     '/libp2p-webrtc-star/ip4/1.2.3.4/tcp/3456/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/libp2p-webrtc-star/dns/ipfs.io/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
-
+    '/libp2p-webrtc-star/dns/ipfs.io/wss/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/libp2p-webrtc-star/ip6/::/tcp/0/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo5'
   ]
 
@@ -132,6 +138,11 @@ describe('multiaddr validation', function () {
   it('WebSockets validation', function () {
     assertMatches(mafmt.WebSockets, goodWS)
     assertMismatches(mafmt.WebSockets, goodIP, goodUDP, badWS)
+  })
+
+  it('WebSocketsSecure validation', function () {
+    assertMatches(mafmt.WebSocketsSecure, goodWSS)
+    assertMismatches(mafmt.WebSocketsSecure, goodIP, goodUDP, badWS)
   })
 
   it('WebRTC-star validation', function () {

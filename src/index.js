@@ -15,20 +15,38 @@ const WebSockets = or(
   and(TCP, base('ws')),
   and(DNS, base('ws'))
 )
+
+const WebSocketsSecure = or(
+  and(TCP, base('wss')),
+  and(DNS, base('wss'))
+)
+
 const HTTP = or(
   and(TCP, base('http')),
   and(DNS),
   and(DNS, base('http'))
 )
 
-const WebRTCStar = and(base('libp2p-webrtc-star'), WebSockets, base('ipfs'))
+const WebRTCStar = or(
+  and(base('libp2p-webrtc-star'), WebSockets, base('ipfs')),
+  and(base('libp2p-webrtc-star'), WebSocketsSecure, base('ipfs'))
+)
+
 const WebRTCDirect = and(base('libp2p-webrtc-direct'), HTTP)
 
-const Reliable = or(WebSockets, TCP, UTP)
+const Reliable = or(
+  WebSockets,
+  WebSocketsSecure,
+  HTTP,
+  WebRTCStar,
+  WebRTCDirect,
+  TCP,
+  UTP
+)
 
 const IPFS = or(
   and(Reliable, base('ipfs')),
-  and(WebRTCStar)
+  WebRTCStar
 )
 
 exports.DNS = DNS
@@ -38,6 +56,7 @@ exports.UDP = UDP
 exports.UTP = UTP
 exports.HTTP = HTTP
 exports.WebSockets = WebSockets
+exports.WebSocketsSecure = WebSocketsSecure
 exports.WebRTCStar = WebRTCStar
 exports.WebRTCDirect = WebRTCDirect
 exports.Reliable = Reliable
