@@ -1,25 +1,37 @@
 'use strict'
 
-var multiaddr = require('multiaddr')
+const multiaddr = require('multiaddr')
 
-var IP = or(base('ip4'), base('ip6'))
-var TCP = and(IP, base('tcp'))
-var UDP = and(IP, base('udp'))
-var UTP = and(UDP, base('utp'))
-var WebSockets = and(TCP, base('ws'))
-var HTTP = and(TCP, base('http'))
-var WebRTCStar = and(base('libp2p-webrtc-star'), WebSockets, base('ipfs'))
-var WebRTCDirect = and(base('libp2p-webrtc-direct'), HTTP)
-var Reliable = or(WebSockets, TCP, UTP)
+/*
+ * Valid combinations
+ */
+const DNS = base('dns')
+const IP = or(base('ip4'), base('ip6'))
+const TCP = and(IP, base('tcp'))
+const UDP = and(IP, base('udp'))
+const UTP = and(UDP, base('utp'))
 
-// required cause some transports are already IPFS aware (like WebRTCStar)
-var IPFS = {
-  matches: function (args) {
-    var IPFS = and(Reliable, base('ipfs'))
-    return IPFS.matches(args) || WebRTCStar.matches(args)
-  }
-}
+const WebSockets = or(
+  and(TCP, base('ws')),
+  and(DNS, base('ws'))
+)
+const HTTP = or(
+  and(TCP, base('http')),
+  and(DNS),
+  and(DNS, base('http'))
+)
 
+const WebRTCStar = and(base('libp2p-webrtc-star'), WebSockets, base('ipfs'))
+const WebRTCDirect = and(base('libp2p-webrtc-direct'), HTTP)
+
+const Reliable = or(WebSockets, TCP, UTP)
+
+const IPFS = or(
+  and(Reliable, base('ipfs')),
+  and(WebRTCStar)
+)
+
+exports.DNS = DNS
 exports.IP = IP
 exports.TCP = TCP
 exports.UDP = UDP
@@ -31,14 +43,18 @@ exports.WebRTCDirect = WebRTCDirect
 exports.Reliable = Reliable
 exports.IPFS = IPFS
 
+/*
+ * Validation funcs
+ */
+
 function and () {
-  var args = Array.from(arguments)
+  const args = Array.from(arguments)
 
   function matches (a) {
     if (typeof a === 'string') {
       a = multiaddr(a)
     }
-    var out = partialMatch(a.protoNames())
+    let out = partialMatch(a.protoNames())
     if (out === null) {
       return false
     }
@@ -67,13 +83,13 @@ function and () {
 }
 
 function or () {
-  var args = Array.from(arguments)
+  const args = Array.from(arguments)
 
   function matches (a) {
     if (typeof a === 'string') {
       a = multiaddr(a)
     }
-    var out = partialMatch(a.protoNames())
+    const out = partialMatch(a.protoNames())
     if (out === null) {
       return false
     }
@@ -81,9 +97,9 @@ function or () {
   }
 
   function partialMatch (a) {
-    var out = null
+    let out = null
     args.some(function (arg) {
-      var res = arg.partialMatch(a)
+      const res = arg.partialMatch(a)
       if (res) {
         out = res
         return true
@@ -93,7 +109,7 @@ function or () {
     return out
   }
 
-  var result = {
+  const result = {
     toString: function () { return '{ ' + args.join(' ') + ' }' },
     input: args,
     matches: matches,
@@ -104,13 +120,13 @@ function or () {
 }
 
 function base (n) {
-  var name = n
+  const name = n
   function matches (a) {
     if (typeof a === 'string') {
       a = multiaddr(a)
     }
 
-    var pnames = a.protoNames()
+    const pnames = a.protoNames()
     if (pnames.length === 1 && pnames[0] === name) {
       return true
     }
