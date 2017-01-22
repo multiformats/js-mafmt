@@ -5,7 +5,14 @@ const multiaddr = require('multiaddr')
 /*
  * Valid combinations
  */
-const DNS = base('dns')
+const DNS4 = base('dns4')
+const DNS6 = base('dns6')
+const DNS = or(
+  base('dns'),
+  DNS4,
+  DNS6
+)
+
 const IP = or(base('ip4'), base('ip6'))
 const TCP = and(IP, base('tcp'))
 const UDP = and(IP, base('udp'))
@@ -50,6 +57,8 @@ const IPFS = or(
 )
 
 exports.DNS = DNS
+exports.DNS4 = DNS4
+exports.DNS6 = DNS6
 exports.IP = IP
 exports.TCP = TCP
 exports.UDP = UDP
