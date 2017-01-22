@@ -8,7 +8,13 @@ const mafmt = require('./../src')
 describe('multiaddr validation', function () {
   const goodDNS = [
     '/dns/ipfs.io',
-    '/dns/protocol.ai'
+    '/dns4/ipfs.io',
+    '/dns4/libp2p.io',
+    '/dns6/protocol.ai'
+  ]
+
+  const badDNS = [
+    '/ip4/127.0.0.1'
   ]
 
   const goodIP = [
@@ -81,6 +87,11 @@ describe('multiaddr validation', function () {
     '/ip6/::/ip4/0.0.0.0/udp/1234/ws'
   ]
 
+  const badWSS = [
+    '/ip4/0.0.0.0/tcp/12345/udp/2222/wss',
+    '/ip6/::/ip4/0.0.0.0/udp/1234/wss'
+  ]
+
   const goodIPFS = [
     '/ip4/127.0.0.1/tcp/20008/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
     '/libp2p-webrtc-star/ip4/1.2.3.4/tcp/3456/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
@@ -107,7 +118,7 @@ describe('multiaddr validation', function () {
 
   it('DNS validation', function () {
     assertMatches(mafmt.DNS, goodDNS)
-    assertMismatches(mafmt.DNS, badIP, goodTCP)
+    assertMismatches(mafmt.DNS, badDNS, badIP, goodTCP)
   })
 
   it('IP validation', function () {
@@ -142,7 +153,7 @@ describe('multiaddr validation', function () {
 
   it('WebSocketsSecure validation', function () {
     assertMatches(mafmt.WebSocketsSecure, goodWSS)
-    assertMismatches(mafmt.WebSocketsSecure, goodIP, goodUDP, badWS)
+    assertMismatches(mafmt.WebSocketsSecure, goodIP, badWSS, goodUDP, badWS)
   })
 
   it('WebRTC-star validation', function () {
