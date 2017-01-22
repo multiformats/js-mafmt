@@ -1,44 +1,88 @@
 'use strict'
 
-var multiaddr = require('multiaddr')
+const multiaddr = require('multiaddr')
 
-var IP = or(base('ip4'), base('ip6'))
-var TCP = and(IP, base('tcp'))
-var UDP = and(IP, base('udp'))
-var UTP = and(UDP, base('utp'))
-var WebSockets = and(TCP, base('ws'))
-var HTTP = and(TCP, base('http'))
-var WebRTCStar = and(base('libp2p-webrtc-star'), WebSockets, base('ipfs'))
-var WebRTCDirect = and(base('libp2p-webrtc-direct'), HTTP)
-var Reliable = or(WebSockets, TCP, UTP)
+/*
+ * Valid combinations
+ */
+const DNS4 = base('dns4')
+const DNS6 = base('dns6')
+const DNS = or(
+  base('dns'),
+  DNS4,
+  DNS6
+)
 
-// required cause some transports are already IPFS aware (like WebRTCStar)
-var IPFS = {
-  matches: function (args) {
-    var IPFS = and(Reliable, base('ipfs'))
-    return IPFS.matches(args) || WebRTCStar.matches(args)
-  }
-}
+const IP = or(base('ip4'), base('ip6'))
+const TCP = and(IP, base('tcp'))
+const UDP = and(IP, base('udp'))
+const UTP = and(UDP, base('utp'))
 
+const WebSockets = or(
+  and(TCP, base('ws')),
+  and(DNS, base('ws'))
+)
+
+const WebSocketsSecure = or(
+  and(TCP, base('wss')),
+  and(DNS, base('wss'))
+)
+
+const HTTP = or(
+  and(TCP, base('http')),
+  and(DNS),
+  and(DNS, base('http'))
+)
+
+const WebRTCStar = or(
+  and(base('libp2p-webrtc-star'), WebSockets, base('ipfs')),
+  and(base('libp2p-webrtc-star'), WebSocketsSecure, base('ipfs'))
+)
+
+const WebRTCDirect = and(base('libp2p-webrtc-direct'), HTTP)
+
+const Reliable = or(
+  WebSockets,
+  WebSocketsSecure,
+  HTTP,
+  WebRTCStar,
+  WebRTCDirect,
+  TCP,
+  UTP
+)
+
+const IPFS = or(
+  and(Reliable, base('ipfs')),
+  WebRTCStar
+)
+
+exports.DNS = DNS
+exports.DNS4 = DNS4
+exports.DNS6 = DNS6
 exports.IP = IP
 exports.TCP = TCP
 exports.UDP = UDP
 exports.UTP = UTP
 exports.HTTP = HTTP
 exports.WebSockets = WebSockets
+exports.WebSocketsSecure = WebSocketsSecure
 exports.WebRTCStar = WebRTCStar
 exports.WebRTCDirect = WebRTCDirect
 exports.Reliable = Reliable
 exports.IPFS = IPFS
 
+/*
+ * Validation funcs
+ */
+
 function and () {
-  var args = Array.from(arguments)
+  const args = Array.from(arguments)
 
   function matches (a) {
     if (typeof a === 'string') {
       a = multiaddr(a)
     }
-    var out = partialMatch(a.protoNames())
+    let out = partialMatch(a.protoNames())
     if (out === null) {
       return false
     }
@@ -67,13 +111,13 @@ function and () {
 }
 
 function or () {
-  var args = Array.from(arguments)
+  const args = Array.from(arguments)
 
   function matches (a) {
     if (typeof a === 'string') {
       a = multiaddr(a)
     }
-    var out = partialMatch(a.protoNames())
+    const out = partialMatch(a.protoNames())
     if (out === null) {
       return false
     }
@@ -81,9 +125,9 @@ function or () {
   }
 
   function partialMatch (a) {
-    var out = null
+    let out = null
     args.some(function (arg) {
-      var res = arg.partialMatch(a)
+      const res = arg.partialMatch(a)
       if (res) {
         out = res
         return true
@@ -93,7 +137,7 @@ function or () {
     return out
   }
 
-  var result = {
+  const result = {
     toString: function () { return '{ ' + args.join(' ') + ' }' },
     input: args,
     matches: matches,
@@ -104,13 +148,13 @@ function or () {
 }
 
 function base (n) {
-  var name = n
+  const name = n
   function matches (a) {
     if (typeof a === 'string') {
       a = multiaddr(a)
     }
 
-    var pnames = a.protoNames()
+    const pnames = a.protoNames()
     if (pnames.length === 1 && pnames[0] === name) {
       return true
     }
