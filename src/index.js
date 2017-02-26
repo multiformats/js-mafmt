@@ -66,6 +66,8 @@ const Circuit = or(
 
 const IPFS = or(
   and(_IPFS, Circuit),
+  and(Circuit, _IPFS),
+  Circuit,
   _IPFS
 )
 
