@@ -61,6 +61,7 @@ const Circuit = or(
   and(_IPFS, base('p2p-circuit'), _IPFS),
   and(_IPFS, base('p2p-circuit')),
   and(base('p2p-circuit'), _IPFS),
+  and(Reliable, base('p2p-circuit')),
   base('p2p-circuit')
 )
 
