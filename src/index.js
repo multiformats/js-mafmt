@@ -56,9 +56,24 @@ const Reliable = or(
   UTP
 )
 
-const IPFS = or(
+let _IPFS = or(
   and(Reliable, base('ipfs')),
-  WebRTCStar
+  WebRTCStar,
+  base('ipfs')
+)
+
+const Circuit = or(
+  and(_IPFS, base('p2p-circuit'), _IPFS),
+  and(_IPFS, base('p2p-circuit')),
+  and(base('p2p-circuit'), _IPFS),
+  base('p2p-circuit')
+)
+
+const IPFS = or(
+  and(_IPFS, Circuit),
+  and(Circuit, _IPFS),
+  Circuit,
+  _IPFS
 )
 
 exports.DNS = DNS
@@ -74,6 +89,7 @@ exports.WebSocketsSecure = WebSocketsSecure
 exports.WebRTCStar = WebRTCStar
 exports.WebRTCDirect = WebRTCDirect
 exports.Reliable = Reliable
+exports.Circuit = Circuit
 exports.IPFS = IPFS
 
 /*
