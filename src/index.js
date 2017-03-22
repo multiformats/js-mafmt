@@ -7,7 +7,7 @@ const multiaddr = require('multiaddr')
  */
 const DNS4 = base('dns4')
 const DNS6 = base('dns6')
-const DNS = or(
+const _DNS = or(
   base('dns'),
   DNS4,
   DNS6
@@ -17,6 +17,11 @@ const IP = or(base('ip4'), base('ip6'))
 const TCP = and(IP, base('tcp'))
 const UDP = and(IP, base('udp'))
 const UTP = and(UDP, base('utp'))
+
+const DNS = or(
+  and(_DNS, base('tcp')),
+  _DNS
+)
 
 const WebSockets = or(
   and(TCP, base('ws')),
