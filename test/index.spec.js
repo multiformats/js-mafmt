@@ -10,7 +10,10 @@ describe('multiaddr validation', function () {
     '/dns/ipfs.io',
     '/dns4/ipfs.io',
     '/dns4/libp2p.io',
-    '/dns6/protocol.ai'
+    '/dns6/protocol.ai',
+    '/dns4/protocol.ai/tcp/80',
+    '/dns6/protocol.ai/tcp/80',
+    '/dns/protocol.ai/tcp/80'
   ]
 
   const badDNS = [
