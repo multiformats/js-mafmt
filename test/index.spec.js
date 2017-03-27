@@ -95,11 +95,33 @@ describe('multiaddr validation', function () {
     '/ip6/::/ip4/0.0.0.0/udp/1234/wss'
   ]
 
+  const goodCircuit = [
+    '/p2p-circuit',
+    '/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
+    '/p2p-circuit/ip4/127.0.0.1/tcp/20008/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
+    '/p2p-circuit/libp2p-webrtc-star/ip4/1.2.3.4/tcp/3456/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/p2p-circuit/ip4/1.2.3.4/tcp/3456/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/p2p-circuit/ip4/127.0.0.1/tcp/4002/ipfs/QmddWMcQX6orJGHpETYMyPgXrCXCtYANMFVDCvhKoDwLqA',
+    '/p2p-circuit/ipfs/QmddWMcQX6orJGHpETYMyPgXrCXCtYANMFVDCvhKoDwLqA',
+    '/p2p-circuit/ip4/127.0.0.1/tcp/20008/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj/' +
+    'p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj'
+  ]
+
+  const badCircuit = [
+    '/ip4/0.0.0.0/tcp/12345/udp/2222/wss',
+    '/ip4/0.0.7.6/udp/1234',
+    '/ip6/::/udp/0/utp',
+    '/dns/ipfs.io/ws',
+    '/libp2p-webrtc-direct/ip4/1.2.3.4/tcp/3456/http'
+  ]
+
   const goodIPFS = [
     '/ip4/127.0.0.1/tcp/20008/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
     '/libp2p-webrtc-star/ip4/1.2.3.4/tcp/3456/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
-    '/ip4/1.2.3.4/tcp/3456/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
-  ]
+    '/ip4/1.2.3.4/tcp/3456/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit',
+    '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj'
+  ].concat(goodCircuit)
 
   function assertMatches (p) {
     const tests = Array.from(arguments).slice(1)
@@ -167,6 +189,11 @@ describe('multiaddr validation', function () {
   it('WebRTC-direct validation', function () {
     assertMatches(mafmt.WebRTCDirect, goodWebRTCDirect)
     assertMismatches(mafmt.WebRTCDirect, goodIP, goodUDP, badWS)
+  })
+
+  it('Circuit validation', function () {
+    assertMatches(mafmt.Circuit, goodCircuit)
+    assertMismatches(mafmt.Circuit, badCircuit)
   })
 
   it('IPFS validation', function () {

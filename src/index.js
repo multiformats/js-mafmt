@@ -56,9 +56,34 @@ const Reliable = or(
   UTP
 )
 
-const IPFS = or(
+let _IPFS = or(
   and(Reliable, base('ipfs')),
-  WebRTCStar
+  WebRTCStar,
+  base('ipfs')
+)
+
+const _Circuit = or(
+  and(_IPFS, base('p2p-circuit'), _IPFS),
+  and(_IPFS, base('p2p-circuit')),
+  and(base('p2p-circuit'), _IPFS),
+  and(Reliable, base('p2p-circuit')),
+  and(base('p2p-circuit'), Reliable),
+  base('p2p-circuit')
+)
+
+const CircuitRecursive = () => or(
+  and(_Circuit, CircuitRecursive),
+  _Circuit
+)
+
+const Circuit = CircuitRecursive()
+
+const IPFS = or(
+  and(Circuit, _IPFS, Circuit),
+  and(_IPFS, Circuit),
+  and(Circuit, _IPFS),
+  Circuit,
+  _IPFS
 )
 
 exports.DNS = DNS
@@ -74,6 +99,7 @@ exports.WebSocketsSecure = WebSocketsSecure
 exports.WebRTCStar = WebRTCStar
 exports.WebRTCDirect = WebRTCDirect
 exports.Reliable = Reliable
+exports.Circuit = Circuit
 exports.IPFS = IPFS
 
 /*
@@ -99,7 +125,7 @@ function and () {
       return null
     }
     args.some(function (arg) {
-      a = arg.partialMatch(a)
+      a = typeof arg === 'function' ? arg().partialMatch(a) : arg.partialMatch(a)
       if (a === null) {
         return true
       }
@@ -132,7 +158,7 @@ function or () {
   function partialMatch (a) {
     let out = null
     args.some(function (arg) {
-      const res = arg.partialMatch(a)
+      const res = typeof arg === 'function' ? arg().partialMatch(a) : arg.partialMatch(a)
       if (res) {
         out = res
         return true
@@ -154,6 +180,7 @@ function or () {
 
 function base (n) {
   const name = n
+
   function matches (a) {
     if (typeof a === 'string') {
       a = multiaddr(a)
