@@ -107,6 +107,14 @@ describe('multiaddr validation', function () {
     'p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj'
   ]
 
+  const badCircuit = [
+    '/ip4/0.0.0.0/tcp/12345/udp/2222/wss',
+    '/ip4/0.0.7.6/udp/1234',
+    '/ip6/::/udp/0/utp',
+    '/dns/ipfs.io/ws',
+    '/libp2p-webrtc-direct/ip4/1.2.3.4/tcp/3456/http'
+  ]
+
   const goodIPFS = [
     '/ip4/127.0.0.1/tcp/20008/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
     '/libp2p-webrtc-star/ip4/1.2.3.4/tcp/3456/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
@@ -185,6 +193,7 @@ describe('multiaddr validation', function () {
 
   it('Circuit validation', function () {
     assertMatches(mafmt.Circuit, goodCircuit)
+    assertMismatches(mafmt.Circuit, badCircuit)
   })
 
   it('IPFS validation', function () {
