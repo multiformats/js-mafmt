@@ -87,7 +87,8 @@ describe('multiaddr validation', function () {
 
   const badWS = [
     '/ip4/0.0.0.0/tcp/12345/udp/2222/ws',
-    '/ip6/::/ip4/0.0.0.0/udp/1234/ws'
+    '/ip6/::/ip4/0.0.0.0/udp/1234/ws',
+    '/libp2p-webrtc-star/ip4/127.0.0.1/tcp/24642/ws'
   ]
 
   const badWSS = [
