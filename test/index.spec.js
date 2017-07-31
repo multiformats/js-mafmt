@@ -20,6 +20,20 @@ describe('multiaddr validation', function () {
     '/ip4/127.0.0.1'
   ]
 
+  const goodDnsIPFS = [
+    '/dns/ipfs.io/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns4/ipfs.io/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns4/libp2p.io/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns6/protocol.ai/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns4/protocol.ai/tcp/80/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns6/protocol.ai/tcp/80/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns/protocol.ai/tcp/80/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
+  ]
+
+  const badDnsIPFS = [
+    '/ip4/127.0.0.1/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
+  ]
+
   const goodIP = [
     '/ip4/0.0.0.0',
     '/ip6/fc00::'
@@ -38,6 +52,11 @@ describe('multiaddr validation', function () {
   const badTCP = [
     '/tcp/12345',
     '/ip6/fc00::/udp/5523/tcp/9543'
+  ]
+
+  const goodTcpIPFS = [
+    '/ip4/0.0.7.6/tcp/1234/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip6/::/tcp/0/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
   ]
 
   const goodUDP = [
@@ -70,6 +89,18 @@ describe('multiaddr validation', function () {
     '/dns/ipfs.io/wss',
     '/ip4/1.2.3.4/tcp/3456/wss',
     '/ip6/::/tcp/0/wss'
+  ]
+
+  const goodWsIPFS = [
+    '/dns/ipfs.io/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip4/1.2.3.4/tcp/3456/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip6/::/tcp/0/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
+  ]
+
+  const goodWssIPFS = [
+    '/dns/ipfs.io/wss/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip4/1.2.3.4/tcp/3456/wss/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip6/::/tcp/0/wss/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
   ]
 
   const goodWebRTCStar = [
@@ -151,6 +182,11 @@ describe('multiaddr validation', function () {
     assertMismatches(mafmt.DNS, badDNS, badIP, goodTCP)
   })
 
+  it('DNS IPFS validation', function () {
+    assertMatches(mafmt.DNS_IPFS, goodDnsIPFS)
+    assertMismatches(mafmt.DNS_IPFS, badDnsIPFS, badDNS, badIP, goodTCP)
+  })
+
   it('IP validation', function () {
     assertMatches(mafmt.IP, goodIP)
     assertMismatches(mafmt.IP, badIP, goodTCP)
@@ -159,6 +195,10 @@ describe('multiaddr validation', function () {
   it('TCP validation', function () {
     assertMatches(mafmt.TCP, goodTCP)
     assertMismatches(mafmt.TCP, badTCP, goodIP)
+  })
+
+  it('TCP IPFS validation', function () {
+    assertMatches(mafmt.TCP_IPFS, goodTcpIPFS)
   })
 
   it('UDP validation', function () {
@@ -184,6 +224,16 @@ describe('multiaddr validation', function () {
   it('WebSocketsSecure validation', function () {
     assertMatches(mafmt.WebSocketsSecure, goodWSS)
     assertMismatches(mafmt.WebSocketsSecure, goodIP, badWSS, goodUDP, badWS)
+  })
+
+  it('WebSockets IPFS validation', function () {
+    assertMatches(mafmt.WebSocketsIPFS, goodWsIPFS)
+    assertMismatches(mafmt.WebSocketsIPFS, goodIP, goodUDP, badWS)
+  })
+
+  it('WebSocketsSecure IPFS validation', function () {
+    assertMatches(mafmt.WebSocketsSecureIPFS, goodWssIPFS)
+    assertMismatches(mafmt.WebSocketsIPFS, goodIP, goodUDP, badWSS)
   })
 
   it('WebSocketsStar validation', function () {
