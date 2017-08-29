@@ -18,19 +18,9 @@ const TCP = and(IP, base('tcp'))
 const UDP = and(IP, base('udp'))
 const UTP = and(UDP, base('utp'))
 
-const TCP_IPFS = or(
-  and(TCP, base('ipfs')),
-  TCP
-)
-
 const DNS = or(
   and(_DNS, base('tcp')),
   _DNS
-)
-
-const DNS_IPFS = or(
-  and(DNS, base('ipfs')),
-  DNS
 )
 
 const WebSockets = or(
@@ -38,23 +28,9 @@ const WebSockets = or(
   and(DNS, base('ws'))
 )
 
-const WebSocketsIPFS = or(
-  and(WebSockets, base('ipfs')),
-  and(TCP_IPFS, base('ws')),
-  and(DNS_IPFS, base('ws')),
-  WebSockets
-)
-
 const WebSocketsSecure = or(
   and(TCP, base('wss')),
   and(DNS, base('wss'))
-)
-
-const WebSocketsSecureIPFS = or(
-  and(WebSocketsSecure, base('ipfs')),
-  and(TCP_IPFS, base('wss')),
-  and(DNS_IPFS, base('wss')),
-  WebSocketsSecure
 )
 
 const HTTP = or(
@@ -117,17 +93,14 @@ const IPFS = or(
 )
 
 exports.DNS = DNS
-exports.DNS_IPFS = DNS_IPFS
 exports.DNS4 = DNS4
 exports.DNS6 = DNS6
 exports.IP = IP
 exports.TCP = TCP
-exports.TCP_IPFS = TCP_IPFS
 exports.UDP = UDP
 exports.UTP = UTP
 exports.HTTP = HTTP
 exports.WebSockets = WebSockets
-exports.WebSocketsIPFS = WebSocketsIPFS
 exports.WebSocketsSecure = WebSocketsSecure
 exports.WebSocketsSecureIPFS = WebSocketsSecureIPFS
 exports.WebSocketsStar = WebSocketsStar
