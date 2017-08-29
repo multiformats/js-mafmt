@@ -14,23 +14,53 @@ const _DNS = or(
 )
 
 const IP = or(base('ip4'), base('ip6'))
-const TCP = and(IP, base('tcp'))
-const UDP = and(IP, base('udp'))
-const UTP = and(UDP, base('utp'))
 
-const DNS = or(
+const _UDP = and(IP, base('udp'))
+const UDP = or(
+  and(_UDP, base('ipfs')),
+  _UDP
+)
+
+const _UTP = and(UDP, base('utp'))
+const UTP = or(
+  and(_UTP, base('ipfs')),
+  _UTP
+)
+
+const _TCP = and(IP, base('tcp'))
+const TCP = or(
+  and(_TCP, base('ipfs')),
+  _TCP
+)
+
+const __DNS = or(
   and(_DNS, base('tcp')),
   _DNS
 )
 
-const WebSockets = or(
+const DNS = or(
+  and(__DNS, base('ipfs')),
+  __DNS
+)
+
+const _WebSockets = or(
   and(TCP, base('ws')),
   and(DNS, base('ws'))
 )
 
-const WebSocketsSecure = or(
+const WebSockets = or(
+  and(_WebSockets, base('ipfs')),
+  _WebSockets
+)
+
+const _WebSocketsSecure = or(
   and(TCP, base('wss')),
   and(DNS, base('wss'))
+)
+
+const WebSocketsSecure = or(
+  and(_WebSocketsSecure, base('ipfs')),
+  _WebSocketsSecure
 )
 
 const HTTP = or(
@@ -40,8 +70,8 @@ const HTTP = or(
 )
 
 const WebRTCStar = or(
-  and(WebSockets, base('p2p-webrtc-star'), base('ipfs')),
-  and(WebSocketsSecure, base('p2p-webrtc-star'), base('ipfs'))
+  and(_WebSockets, base('p2p-webrtc-star'), base('ipfs')),
+  and(_WebSocketsSecure, base('p2p-webrtc-star'), base('ipfs'))
 )
 
 const WebSocketsStar = or(
@@ -63,8 +93,7 @@ const Reliable = or(
 )
 
 let _IPFS = or(
-  and(Reliable, base('ipfs')),
-  WebRTCStar,
+  Reliable,
   base('ipfs')
 )
 
@@ -72,8 +101,6 @@ const _Circuit = or(
   and(_IPFS, base('p2p-circuit'), _IPFS),
   and(_IPFS, base('p2p-circuit')),
   and(base('p2p-circuit'), _IPFS),
-  and(Reliable, base('p2p-circuit')),
-  and(base('p2p-circuit'), Reliable),
   base('p2p-circuit')
 )
 
@@ -102,7 +129,6 @@ exports.UTP = UTP
 exports.HTTP = HTTP
 exports.WebSockets = WebSockets
 exports.WebSocketsSecure = WebSocketsSecure
-exports.WebSocketsSecureIPFS = WebSocketsSecureIPFS
 exports.WebSocketsStar = WebSocketsStar
 exports.WebRTCStar = WebRTCStar
 exports.WebRTCDirect = WebRTCDirect
