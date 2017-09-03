@@ -40,11 +40,17 @@ const HTTP = or(
 )
 
 const WebRTCStar = or(
-  and(base('libp2p-webrtc-star'), WebSockets, base('ipfs')),
-  and(base('libp2p-webrtc-star'), WebSocketsSecure, base('ipfs'))
+  and(WebSockets, base('p2p-webrtc-star'), base('ipfs')),
+  and(WebSocketsSecure, base('p2p-webrtc-star'), base('ipfs'))
 )
 
-const WebRTCDirect = and(base('libp2p-webrtc-direct'), HTTP)
+const WebSocketsStar = or(
+  and(WebSockets, base('p2p-websockets-star')),
+  and(WebSockets, base('p2p-websockets-star'), base('ipfs')),
+  and(WebSocketsSecure, base('p2p-websockets-star'), base('ipfs'))
+)
+
+const WebRTCDirect = and(HTTP, base('p2p-webrtc-direct'))
 
 const Reliable = or(
   WebSockets,
@@ -96,6 +102,7 @@ exports.UTP = UTP
 exports.HTTP = HTTP
 exports.WebSockets = WebSockets
 exports.WebSocketsSecure = WebSocketsSecure
+exports.WebSocketsStar = WebSocketsStar
 exports.WebRTCStar = WebRTCStar
 exports.WebRTCDirect = WebRTCDirect
 exports.Reliable = Reliable
@@ -124,8 +131,11 @@ function and () {
     if (a.length < args.length) {
       return null
     }
-    args.some(function (arg) {
-      a = typeof arg === 'function' ? arg().partialMatch(a) : arg.partialMatch(a)
+    args.some((arg) => {
+      a = typeof arg === 'function'
+        ? arg().partialMatch(a)
+        : arg.partialMatch(a)
+
       if (a === null) {
         return true
       }
@@ -157,8 +167,10 @@ function or () {
 
   function partialMatch (a) {
     let out = null
-    args.some(function (arg) {
-      const res = typeof arg === 'function' ? arg().partialMatch(a) : arg.partialMatch(a)
+    args.some((arg) => {
+      const res = typeof arg === 'function'
+        ? arg().partialMatch(a)
+        : arg.partialMatch(a)
       if (res) {
         out = res
         return true

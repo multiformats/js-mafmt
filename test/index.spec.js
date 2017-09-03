@@ -73,22 +73,26 @@ describe('multiaddr validation', function () {
   ]
 
   const goodWebRTCStar = [
-    '/libp2p-webrtc-star/ip4/1.2.3.4/tcp/3456/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
-    '/libp2p-webrtc-star/dns/ipfs.io/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
-    '/libp2p-webrtc-star/dns/ipfs.io/wss/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
-    '/libp2p-webrtc-star/ip6/::/tcp/0/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo5'
+    '/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns/ipfs.io/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns/ipfs.io/wss/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip6/::/tcp/0/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo5'
   ]
 
   const goodWebRTCDirect = [
-    // '/libp2p-webrtc-direct/dns/ipfs.io',
-    '/libp2p-webrtc-direct/ip4/1.2.3.4/tcp/3456/http',
-    '/libp2p-webrtc-direct/ip6/::/tcp/0/http'
+    '/ip4/1.2.3.4/tcp/3456/http/p2p-webrtc-direct',
+    '/ip6/::/tcp/0/http/p2p-webrtc-direct'
+  ]
+
+  const goodWebSocketsStar = [
+    '/ip4/1.2.3.4/tcp/3456/ws/p2p-websockets-star',
+    '/ip6/::/tcp/0/ws/p2p-websockets-star'
   ]
 
   const badWS = [
     '/ip4/0.0.0.0/tcp/12345/udp/2222/ws',
     '/ip6/::/ip4/0.0.0.0/udp/1234/ws',
-    '/libp2p-webrtc-star/ip4/127.0.0.1/tcp/24642/ws'
+    '/ip4/127.0.0.1/tcp/24642/ws/p2p-webrtc-star'
   ]
 
   const badWSS = [
@@ -100,7 +104,7 @@ describe('multiaddr validation', function () {
     '/p2p-circuit',
     '/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
     '/p2p-circuit/ip4/127.0.0.1/tcp/20008/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
-    '/p2p-circuit/libp2p-webrtc-star/ip4/1.2.3.4/tcp/3456/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/p2p-circuit/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/p2p-circuit/ip4/1.2.3.4/tcp/3456/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/p2p-circuit/ip4/127.0.0.1/tcp/4002/ipfs/QmddWMcQX6orJGHpETYMyPgXrCXCtYANMFVDCvhKoDwLqA',
     '/p2p-circuit/ipfs/QmddWMcQX6orJGHpETYMyPgXrCXCtYANMFVDCvhKoDwLqA',
@@ -113,12 +117,12 @@ describe('multiaddr validation', function () {
     '/ip4/0.0.7.6/udp/1234',
     '/ip6/::/udp/0/utp',
     '/dns/ipfs.io/ws',
-    '/libp2p-webrtc-direct/ip4/1.2.3.4/tcp/3456/http'
+    '/ip4/1.2.3.4/tcp/3456/http/p2p-webrtc-star'
   ]
 
   const goodIPFS = [
     '/ip4/127.0.0.1/tcp/20008/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
-    '/libp2p-webrtc-star/ip4/1.2.3.4/tcp/3456/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ip4/1.2.3.4/tcp/3456/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit',
     '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj'
@@ -182,12 +186,17 @@ describe('multiaddr validation', function () {
     assertMismatches(mafmt.WebSocketsSecure, goodIP, badWSS, goodUDP, badWS)
   })
 
-  it('WebRTC-star validation', function () {
+  it('WebSocketsStar validation', function () {
+    assertMatches(mafmt.WebSocketsStar, goodWebSocketsStar)
+    assertMismatches(mafmt.WebSocketsStar, goodIP, goodUDP, badWS)
+  })
+
+  it('WebRTCStar validation', function () {
     assertMatches(mafmt.WebRTCStar, goodWebRTCStar)
     assertMismatches(mafmt.WebRTCStar, goodIP, goodUDP, badWS)
   })
 
-  it('WebRTC-direct validation', function () {
+  it('WebRTCDirect validation', function () {
     assertMatches(mafmt.WebRTCDirect, goodWebRTCDirect)
     assertMismatches(mafmt.WebRTCDirect, goodIP, goodUDP, badWS)
   })
