@@ -84,9 +84,11 @@ describe('multiaddr validation', function () {
     '/ip6/::/tcp/0/http/p2p-webrtc-direct'
   ]
 
-  const goodWebSocketsStar = [
-    '/ip4/1.2.3.4/tcp/3456/ws/p2p-websockets-star',
-    '/ip6/::/tcp/0/ws/p2p-websockets-star'
+  const goodWebSocketStar = [
+    '/ip4/1.2.3.4/tcp/3456/ws/p2p-websocket-star',
+    '/ip6/::/tcp/0/ws/p2p-websocket-star',
+    '/dns/localhost/ws/p2p-websocket-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip4/1.2.3.4/tcp/3456/ws/p2p-websocket-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
   ]
 
   const badWS = [
@@ -186,9 +188,9 @@ describe('multiaddr validation', function () {
     assertMismatches(mafmt.WebSocketsSecure, goodIP, badWSS, goodUDP, badWS)
   })
 
-  it('WebSocketsStar validation', function () {
-    assertMatches(mafmt.WebSocketsStar, goodWebSocketsStar)
-    assertMismatches(mafmt.WebSocketsStar, goodIP, goodUDP, badWS)
+  it('WebSocketStar validation', function () {
+    assertMatches(mafmt.WebSocketStar, goodWebSocketStar)
+    assertMismatches(mafmt.WebSocketStar, goodIP, goodUDP, badWS)
   })
 
   it('WebRTCStar validation', function () {
