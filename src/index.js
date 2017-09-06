@@ -45,9 +45,10 @@ const WebRTCStar = or(
 )
 
 const WebSocketStar = or(
-  and(WebSockets, base('p2p-websocket-star')),
   and(WebSockets, base('p2p-websocket-star'), base('ipfs')),
-  and(WebSocketsSecure, base('p2p-websocket-star'), base('ipfs'))
+  and(WebSocketsSecure, base('p2p-websocket-star'), base('ipfs')),
+  and(WebSockets, base('p2p-websocket-star')),
+  and(WebSocketsSecure, base('p2p-websocket-star'))
 )
 
 const WebRTCDirect = and(HTTP, base('p2p-webrtc-direct'))
