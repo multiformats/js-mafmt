@@ -20,6 +20,20 @@ describe('multiaddr validation', function () {
     '/ip4/127.0.0.1'
   ]
 
+  const goodDnsIPFS = [
+    '/dns/ipfs.io/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns4/ipfs.io/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns4/libp2p.io/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns6/protocol.ai/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns4/protocol.ai/tcp/80/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns6/protocol.ai/tcp/80/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns/protocol.ai/tcp/80/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
+  ]
+
+  const badDnsIPFS = [
+    '/ip4/127.0.0.1/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
+  ]
+
   const goodIP = [
     '/ip4/0.0.0.0',
     '/ip6/fc00::'
@@ -32,7 +46,9 @@ describe('multiaddr validation', function () {
 
   const goodTCP = [
     '/ip4/0.0.7.6/tcp/1234',
-    '/ip6/::/tcp/0'
+    '/ip6/::/tcp/0',
+    '/ip4/0.0.7.6/tcp/1234/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip6/::/tcp/0/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
   ]
 
   const badTCP = [
@@ -42,7 +58,9 @@ describe('multiaddr validation', function () {
 
   const goodUDP = [
     '/ip4/0.0.7.6/udp/1234',
-    '/ip6/::/udp/0'
+    '/ip6/::/udp/0',
+    '/ip4/0.0.7.6/udp/1234/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip6/::/udp/0/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
   ]
 
   const badUDP = [
@@ -52,7 +70,9 @@ describe('multiaddr validation', function () {
 
   const goodUTP = [
     '/ip4/1.2.3.4/udp/3456/utp',
-    '/ip6/::/udp/0/utp'
+    '/ip6/::/udp/0/utp',
+    '/ip4/1.2.3.4/udp/3456/utp/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip6/::/udp/0/utp/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
   ]
 
   const badUTP = [
@@ -63,13 +83,19 @@ describe('multiaddr validation', function () {
   const goodWS = [
     '/dns/ipfs.io/ws',
     '/ip4/1.2.3.4/tcp/3456/ws',
-    '/ip6/::/tcp/0/ws'
+    '/ip6/::/tcp/0/ws',
+    '/dns/ipfs.io/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip4/1.2.3.4/tcp/3456/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip6/::/tcp/0/ws/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
   ]
 
   const goodWSS = [
     '/dns/ipfs.io/wss',
     '/ip4/1.2.3.4/tcp/3456/wss',
-    '/ip6/::/tcp/0/wss'
+    '/ip6/::/tcp/0/wss',
+    '/dns/ipfs.io/wss/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip4/1.2.3.4/tcp/3456/wss/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip6/::/tcp/0/wss/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4'
   ]
 
   const goodWebRTCStar = [
@@ -123,12 +149,13 @@ describe('multiaddr validation', function () {
   ]
 
   const goodIPFS = [
+    '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ip4/127.0.0.1/tcp/20008/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
     '/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ip4/1.2.3.4/tcp/3456/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit',
     '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj'
-  ].concat(goodCircuit)
+  ]
 
   function assertMatches (p) {
     const tests = Array.from(arguments).slice(1)
@@ -151,6 +178,11 @@ describe('multiaddr validation', function () {
   it('DNS validation', function () {
     assertMatches(mafmt.DNS, goodDNS)
     assertMismatches(mafmt.DNS, badDNS, badIP, goodTCP)
+  })
+
+  it('DNS IPFS validation', function () {
+    assertMatches(mafmt.DNS, goodDnsIPFS)
+    assertMismatches(mafmt.DNS, badDnsIPFS, badDNS, badIP, goodTCP)
   })
 
   it('IP validation', function () {
@@ -209,6 +241,6 @@ describe('multiaddr validation', function () {
   })
 
   it('IPFS validation', function () {
-    assertMatches(mafmt.IPFS, goodIPFS)
+    assertMatches(mafmt.IPFS, goodIPFS, goodCircuit)
   })
 })
