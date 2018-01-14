@@ -8,7 +8,7 @@ const multiaddr = require('multiaddr')
 const DNS4 = base('dns4')
 const DNS6 = base('dns6')
 const _DNS = or(
-  base('dns'),
+  base('dnsaddr'),
   DNS4,
   DNS6
 )
