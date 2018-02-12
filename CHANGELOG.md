@@ -1,3 +1,13 @@
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/whyrusleeping/js-mafmt/compare/v3.0.2...v3.1.0) (2018-02-12)
+
+
+### Features
+
+* /dns => /dnsaddr ([#21](https://github.com/whyrusleeping/js-mafmt/issues/21)) ([ecef5f4](https://github.com/whyrusleeping/js-mafmt/commit/ecef5f4))
+
+
+
 <a name="3.0.2"></a>
 ## [3.0.2](https://github.com/whyrusleeping/js-mafmt/compare/v3.0.1...v3.0.2) (2017-10-24)
 
