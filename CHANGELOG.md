@@ -1,3 +1,8 @@
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/whyrusleeping/js-mafmt/compare/v3.1.0...v4.0.0) (2018-02-12)
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/whyrusleeping/js-mafmt/compare/v3.0.2...v3.1.0) (2018-02-12)
 
