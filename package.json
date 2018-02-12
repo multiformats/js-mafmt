@@ -33,12 +33,12 @@
   },
   "homepage": "https://github.com/whyrusleeping/js-mafmt#readme",
   "devDependencies": {
-    "aegir": "^12.2.0",
+    "aegir": "^12.4.0",
     "chai": "^4.1.2",
     "pre-commit": "^1.2.2"
   },
   "dependencies": {
-    "multiaddr": "^3.0.1"
+    "multiaddr": "^3.0.2"
   },
   "contributors": [
     "David Dias <daviddias.p@gmail.com>",
