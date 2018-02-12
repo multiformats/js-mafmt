@@ -7,13 +7,13 @@ const mafmt = require('./../src')
 
 describe('multiaddr validation', function () {
   const goodDNS = [
-    '/dns/ipfs.io',
+    '/dnsaddr/ipfs.io',
     '/dns4/ipfs.io',
     '/dns4/libp2p.io',
     '/dns6/protocol.ai',
     '/dns4/protocol.ai/tcp/80',
     '/dns6/protocol.ai/tcp/80',
-    '/dns/protocol.ai/tcp/80'
+    '/dnsaddr/protocol.ai/tcp/80'
   ]
 
   const badDNS = [
@@ -61,21 +61,21 @@ describe('multiaddr validation', function () {
   ]
 
   const goodWS = [
-    '/dns/ipfs.io/ws',
+    '/dnsaddr/ipfs.io/ws',
     '/ip4/1.2.3.4/tcp/3456/ws',
     '/ip6/::/tcp/0/ws'
   ]
 
   const goodWSS = [
-    '/dns/ipfs.io/wss',
+    '/dnsaddr/ipfs.io/wss',
     '/ip4/1.2.3.4/tcp/3456/wss',
     '/ip6/::/tcp/0/wss'
   ]
 
   const goodWebRTCStar = [
     '/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
-    '/dns/ipfs.io/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
-    '/dns/ipfs.io/wss/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dnsaddr/ipfs.io/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dnsaddr/ipfs.io/wss/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ip6/::/tcp/0/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo5',
     '/dns4/wrtc-star.discovery.libp2p.io/tcp/443/wss/p2p-webrtc-star/ipfs/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79'
   ]
@@ -88,7 +88,7 @@ describe('multiaddr validation', function () {
   const goodWebSocketStar = [
     '/ip4/1.2.3.4/tcp/3456/ws/p2p-websocket-star',
     '/ip6/::/tcp/0/ws/p2p-websocket-star',
-    '/dns/localhost/ws/p2p-websocket-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dnsaddr/localhost/ws/p2p-websocket-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ip4/1.2.3.4/tcp/3456/ws/p2p-websocket-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star/ipfs/Qma3uqwymdqwXtC4uvmqqwwMhTDHD7xp9FzM75tQB5qRM3'
   ]
@@ -120,7 +120,7 @@ describe('multiaddr validation', function () {
     '/ip4/0.0.0.0/tcp/12345/udp/2222/wss',
     '/ip4/0.0.7.6/udp/1234',
     '/ip6/::/udp/0/utp',
-    '/dns/ipfs.io/ws',
+    '/dnsaddr/ipfs.io/ws',
     '/ip4/1.2.3.4/tcp/3456/http/p2p-webrtc-star'
   ]
 
