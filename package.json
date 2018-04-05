@@ -41,6 +41,7 @@
     "multiaddr": "^4.0.0"
   },
   "contributors": [
+    "Alan Shaw <alan@tableflip.io>",
     "David Dias <daviddias.p@gmail.com>",
     "Jeromy <jeromyj@gmail.com>",
     "Jeromy Johnson <why@ipfs.io>",
