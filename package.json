@@ -1,6 +1,6 @@
 {
   "name": "mafmt",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "A multiaddr validator",
   "main": "src/index.js",
   "scripts": {
