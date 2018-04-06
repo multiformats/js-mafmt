@@ -60,6 +60,25 @@ describe('multiaddr validation', function () {
     '/ip6/::/ip4/0.0.0.0/udp/1234/utp'
   ]
 
+  const goodHTTP = [
+    '/dnsaddr/ipfs.io',
+    '/dnsaddr/ipfs.io/http',
+    '/dnsaddr/ipfs.io/tcp/3456/http',
+    '/ip4/0.0.0.0/http',
+    '/ip4/0.0.0.0/tcp/12345/http',
+    '/ip6/::/http',
+    '/ip6/::/tcp/12345/http'
+  ]
+
+  const goodHTTPS = [
+    '/dnsaddr/ipfs.io/https',
+    '/dnsaddr/ipfs.io/tcp/3456/https',
+    '/ip4/0.0.0.0/https',
+    '/ip4/0.0.0.0/tcp/12345/https',
+    '/ip6/::/https',
+    '/ip6/::/tcp/12345/https'
+  ]
+
   const goodWS = [
     '/dnsaddr/ipfs.io/ws',
     '/ip4/1.2.3.4/tcp/3456/ws',
@@ -173,6 +192,16 @@ describe('multiaddr validation', function () {
   it('UTP validation', function () {
     assertMatches(mafmt.UTP, goodUTP)
     assertMismatches(mafmt.UTP, badUTP, goodIP, goodTCP, goodUDP)
+  })
+
+  it('HTTP validation', function () {
+    assertMatches(mafmt.HTTP, goodHTTP)
+    assertMismatches(mafmt.HTTP, goodIP, goodTCP, goodUDP)
+  })
+
+  it('HTTPS validation', function () {
+    assertMatches(mafmt.HTTPS, goodHTTPS)
+    assertMismatches(mafmt.HTTPS, goodHTTP, goodIP, goodTCP, goodUDP)
   })
 
   it('Reliable validation', function () {
