@@ -35,8 +35,15 @@ const WebSocketsSecure = or(
 
 const HTTP = or(
   and(TCP, base('http')),
-  and(DNS),
-  and(DNS, base('http'))
+  and(IP, base('http')),
+  and(DNS, base('http')),
+  and(DNS)
+)
+
+const HTTPS = or(
+  and(TCP, base('https')),
+  and(IP, base('https')),
+  and(DNS, base('https'))
 )
 
 const WebRTCStar = or(
@@ -51,12 +58,16 @@ const WebSocketStar = or(
   and(WebSocketsSecure, base('p2p-websocket-star'))
 )
 
-const WebRTCDirect = and(HTTP, base('p2p-webrtc-direct'))
+const WebRTCDirect = or(
+  and(HTTP, base('p2p-webrtc-direct')),
+  and(HTTPS, base('p2p-webrtc-direct'))
+)
 
 const Reliable = or(
   WebSockets,
   WebSocketsSecure,
   HTTP,
+  HTTPS,
   WebRTCStar,
   WebRTCDirect,
   TCP,
@@ -101,6 +112,7 @@ exports.TCP = TCP
 exports.UDP = UDP
 exports.UTP = UTP
 exports.HTTP = HTTP
+exports.HTTPS = HTTPS
 exports.WebSockets = WebSockets
 exports.WebSocketsSecure = WebSocketsSecure
 exports.WebSocketStar = WebSocketStar
@@ -146,6 +158,7 @@ function and () {
   }
 
   return {
+    toString: function () { return '{ ' + args.join(' ') + ' }' },
     input: args,
     matches: matches,
     partialMatch: partialMatch
