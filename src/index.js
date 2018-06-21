@@ -74,6 +74,11 @@ const Reliable = or(
   UTP
 )
 
+const WebRTCCircuit = or(
+  and(Reliable, base('p2p-webrtc-circuit'), base('ipfs')),
+  and(base('p2p-webrtc-circuit'), base('ipfs'))
+)
+
 let _IPFS = or(
   and(Reliable, base('ipfs')),
   WebRTCStar,
@@ -118,6 +123,7 @@ exports.WebSocketsSecure = WebSocketsSecure
 exports.WebSocketStar = WebSocketStar
 exports.WebRTCStar = WebRTCStar
 exports.WebRTCDirect = WebRTCDirect
+exports.WebRTCCircuit = WebRTCCircuit
 exports.Reliable = Reliable
 exports.Circuit = Circuit
 exports.IPFS = IPFS
