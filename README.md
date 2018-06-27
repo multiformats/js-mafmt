@@ -11,6 +11,10 @@ js-mafmt
 
 > Javascript implementation of multiaddr validation
 
+## Lead Maintainer
+
+[Vasco Santos](https://github.com/vasco-santos).
+
 ## Install
 
 ```sh

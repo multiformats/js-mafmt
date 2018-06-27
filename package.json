@@ -2,6 +2,7 @@
   "name": "mafmt",
   "version": "6.0.0",
   "description": "A multiaddr validator",
+  "leadMaintainer": "Vasco Santos <vasco.santos@moxy.studio>",
   "main": "src/index.js",
   "scripts": {
     "lint": "aegir lint",
@@ -15,7 +16,7 @@
     "coverage": "aegir coverage",
     "coverage-publish": "aegir coverage publish"
   },
-  "pre-commit": [
+  "pre-push": [
     "lint",
     "test"
   ],
@@ -26,7 +27,6 @@
   "keywords": [
     "multiaddr"
   ],
-  "author": "whyrusleeping",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/whyrusleeping/js-mafmt/issues"
@@ -34,8 +34,7 @@
   "homepage": "https://github.com/whyrusleeping/js-mafmt#readme",
   "devDependencies": {
     "aegir": "^13.0.6",
-    "chai": "^4.1.2",
-    "pre-commit": "^1.2.2"
+    "chai": "^4.1.2"
   },
   "dependencies": {
     "multiaddr": "^4.0.0"
