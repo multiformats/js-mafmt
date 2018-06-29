@@ -75,8 +75,8 @@ const Reliable = or(
 )
 
 const WebRTCCircuit = or(
-  and(Reliable, base('p2p-webrtc-circuit'), base('ipfs')),
-  and(base('p2p-webrtc-circuit'), base('ipfs'))
+  and(Reliable, base('ipfs'), base('p2p-webrtc-circuit')),
+  and(base('ipfs'), base('p2p-webrtc-circuit'))
 )
 
 let _IPFS = or(
