@@ -33,12 +33,12 @@
   },
   "homepage": "https://github.com/whyrusleeping/js-mafmt#readme",
   "devDependencies": {
-    "aegir": "^13.0.6",
+    "aegir": "^14.0.0",
     "chai": "^4.1.2",
     "pre-commit": "^1.2.2"
   },
   "dependencies": {
-    "multiaddr": "^4.0.0"
+    "multiaddr": "^5.0.0"
   },
   "contributors": [
     "Alan Shaw <alan@tableflip.io>",
