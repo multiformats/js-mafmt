@@ -99,6 +99,14 @@ describe('multiaddr validation', function () {
     '/dns4/wrtc-star.discovery.libp2p.io/tcp/443/wss/p2p-webrtc-star/ipfs/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79'
   ]
 
+  const goodWebRTCCircuit = [
+    '/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-circuit/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dnsaddr/ipfs.io/ws/p2p-webrtc-circuit/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dnsaddr/ipfs.io/wss/p2p-webrtc-circuit/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip6/::/tcp/0/ws/p2p-webrtc-circuit/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo5',
+    '/dns4/wrtc-star.discovery.libp2p.io/tcp/443/wss/p2p-webrtc-circuit/ipfs/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79'
+  ]
+
   const goodWebRTCDirect = [
     '/ip4/1.2.3.4/tcp/3456/http/p2p-webrtc-direct',
     '/ip6/::/tcp/0/http/p2p-webrtc-direct'
@@ -227,6 +235,11 @@ describe('multiaddr validation', function () {
   it('WebRTCStar validation', function () {
     assertMatches(mafmt.WebRTCStar, goodWebRTCStar)
     assertMismatches(mafmt.WebRTCStar, goodIP, goodUDP, badWS)
+  })
+
+  it('WebRTCCircuit validation', function () {
+    assertMatches(mafmt.WebRTCCircuit, goodWebRTCCircuit)
+    assertMismatches(mafmt.WebRTCCircuit, goodIP, goodUDP, badWS)
   })
 
   it('WebRTCDirect validation', function () {
