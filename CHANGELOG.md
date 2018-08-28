@@ -1,3 +1,13 @@
+<a name="6.0.1"></a>
+## [6.0.1](https://github.com/whyrusleeping/js-mafmt/compare/v6.0.0...v6.0.1) (2018-08-28)
+
+
+### Features
+
+* adds HTTPS validation and HTTP(s) tests ([87c4202](https://github.com/whyrusleeping/js-mafmt/commit/87c4202))
+
+
+
 <a name="6.0.0"></a>
 # [6.0.0](https://github.com/whyrusleeping/js-mafmt/compare/v4.0.0...v6.0.0) (2018-04-05)
 
