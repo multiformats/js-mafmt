@@ -32,12 +32,15 @@ describe('multiaddr validation', function () {
 
   const goodTCP = [
     '/ip4/0.0.7.6/tcp/1234',
-    '/ip6/::/tcp/0'
+    '/ip6/::/tcp/0',
+    '/dns4/protocol.ai/tcp/80',
+    '/dnsaddr/protocol.ai/tcp/80'
   ]
 
   const badTCP = [
     '/tcp/12345',
-    '/ip6/fc00::/udp/5523/tcp/9543'
+    '/ip6/fc00::/udp/5523/tcp/9543',
+    '/dns4/protocol.ai'
   ]
 
   const goodUDP = [
@@ -171,7 +174,7 @@ describe('multiaddr validation', function () {
 
   it('DNS validation', function () {
     assertMatches(mafmt.DNS, goodDNS)
-    assertMismatches(mafmt.DNS, badDNS, badIP, goodTCP)
+    assertMismatches(mafmt.DNS, badDNS, badIP)
   })
 
   it('IP validation', function () {
@@ -196,7 +199,7 @@ describe('multiaddr validation', function () {
 
   it('HTTP validation', function () {
     assertMatches(mafmt.HTTP, goodHTTP)
-    assertMismatches(mafmt.HTTP, goodIP, goodTCP, goodUDP)
+    assertMismatches(mafmt.HTTP, goodIP, goodUDP)
   })
 
   it('HTTPS validation', function () {
