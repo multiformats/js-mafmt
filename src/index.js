@@ -14,7 +14,10 @@ const _DNS = or(
 )
 
 const IP = or(base('ip4'), base('ip6'))
-const TCP = and(IP, base('tcp'))
+const TCP = or(
+  and(IP, base('tcp')),
+  and(_DNS, base('tcp'))
+)
 const UDP = and(IP, base('udp'))
 const UTP = and(UDP, base('utp'))
 
