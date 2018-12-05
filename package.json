@@ -20,24 +20,19 @@
     "lint",
     "test"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/whyrusleeping/js-mafmt.git"
-  },
+  "repository": "github:multiformats/js-mafmt",
   "keywords": [
     "multiaddr"
   ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/whyrusleeping/js-mafmt/issues"
-  },
-  "homepage": "https://github.com/whyrusleeping/js-mafmt#readme",
+  "bugs": "https://github.com/multiformats/js-mafmt/issues",
+  "homepage": "https://github.com/multiformats/js-mafmt#readme",
   "devDependencies": {
-    "aegir": "^14.0.0",
-    "chai": "^4.1.2"
+    "aegir": "^17.1.1",
+    "chai": "^4.2.0"
   },
   "dependencies": {
-    "multiaddr": "^5.0.0"
+    "multiaddr": "^6.0.0"
   },
   "contributors": [
     "Alan Shaw <alan@tableflip.io>",
