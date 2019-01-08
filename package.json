@@ -28,11 +28,11 @@
   "bugs": "https://github.com/multiformats/js-mafmt/issues",
   "homepage": "https://github.com/multiformats/js-mafmt#readme",
   "devDependencies": {
-    "aegir": "github:ipfs/aegir#feat/make-exp-build-test-default",
+    "aegir": "^18.0.3",
     "chai": "^4.2.0"
   },
   "dependencies": {
-    "multiaddr": "multiformats/js-multiaddr#feat/bundle-size"
+    "multiaddr": "^6.0.3"
   },
   "contributors": [
     "Alan Shaw <alan@tableflip.io>",
