@@ -1,3 +1,13 @@
+<a name="6.0.4"></a>
+## [6.0.4](https://github.com/multiformats/js-mafmt/compare/v6.0.3...v6.0.4) (2019-01-08)
+
+
+### Bug Fixes
+
+* reduce bundle size ([#34](https://github.com/multiformats/js-mafmt/issues/34)) ([8a2eb6b](https://github.com/multiformats/js-mafmt/commit/8a2eb6b))
+
+
+
 <a name="6.0.3"></a>
 ## [6.0.3](https://github.com/multiformats/js-mafmt/compare/v6.0.2...v6.0.3) (2018-12-05)
 
