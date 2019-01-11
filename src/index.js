@@ -77,6 +77,12 @@ const Reliable = or(
   UTP
 )
 
+// Unlike ws-star, stardust can run over any transport thus removing the requirement for websockets (but don't even think about running a stardust server over webrtc-star ;) )
+const Stardust = or(
+  and(Reliable, base('p2p-stardust'), base('ipfs')),
+  and(Reliable, base('p2p-stardust'))
+)
+
 let _IPFS = or(
   and(Reliable, base('ipfs')),
   WebRTCStar,
@@ -122,6 +128,7 @@ exports.WebSocketStar = WebSocketStar
 exports.WebRTCStar = WebRTCStar
 exports.WebRTCDirect = WebRTCDirect
 exports.Reliable = Reliable
+exports.Stardust = Stardust
 exports.Circuit = Circuit
 exports.IPFS = IPFS
 

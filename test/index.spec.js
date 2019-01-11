@@ -115,6 +115,14 @@ describe('multiaddr validation', function () {
     '/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star/ipfs/Qma3uqwymdqwXtC4uvmqqwwMhTDHD7xp9FzM75tQB5qRM3'
   ]
 
+  const goodStardust = [
+    '/ip4/1.2.3.4/tcp/3456/ws/p2p-stardust',
+    '/ip6/::/tcp/0/ws/p2p-stardust',
+    '/dnsaddr/localhost/ws/p2p-stardust/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip4/1.2.3.4/tcp/3456/ws/p2p-stardust/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-stardust/ipfs/Qma3uqwymdqwXtC4uvmqqwwMhTDHD7xp9FzM75tQB5qRM3'
+  ]
+
   const badWS = [
     '/ip4/0.0.0.0/tcp/12345/udp/2222/ws',
     '/ip6/::/ip4/0.0.0.0/udp/1234/ws',
@@ -158,7 +166,12 @@ describe('multiaddr validation', function () {
     const tests = Array.from(arguments).slice(1)
     tests.forEach(function (test) {
       test.forEach(function (testcase) {
-        expect(p.matches(testcase)).to.be.eql(true)
+        try {
+          expect(p.matches(testcase)).to.be.eql(true)
+        } catch (err) {
+          err.stack = '[testcase=' + JSON.stringify(testcase) + ', shouldMatch=true] ' + err.stack
+          throw err
+        }
       })
     })
   }
@@ -167,7 +180,12 @@ describe('multiaddr validation', function () {
     const tests = Array.from(arguments).slice(1)
     tests.forEach(function (test) {
       test.forEach(function (testcase) {
-        expect(p.matches(testcase)).to.be.eql(false)
+        try {
+          expect(p.matches(testcase)).to.be.eql(false)
+        } catch (err) {
+          err.stack = '[testcase=' + JSON.stringify(testcase) + ', shouldMatch=false] ' + err.stack
+          throw err
+        }
       })
     })
   }
@@ -229,6 +247,11 @@ describe('multiaddr validation', function () {
   it('WebSocketStar validation', function () {
     assertMatches(mafmt.WebSocketStar, goodWebSocketStar)
     assertMismatches(mafmt.WebSocketStar, goodIP, goodUDP, badWS)
+  })
+
+  it('Stardust validation', function () {
+    assertMatches(mafmt.Stardust, goodStardust)
+    assertMismatches(mafmt.Stardust, goodIP, goodUDP, badWS)
   })
 
   it('WebRTCStar validation', function () {

@@ -32,7 +32,7 @@
     "chai": "^4.2.0"
   },
   "dependencies": {
-    "multiaddr": "^6.0.3"
+    "multiaddr": "^6.0.4"
   },
   "contributors": [
     "Alan Shaw <alan@tableflip.io>",
