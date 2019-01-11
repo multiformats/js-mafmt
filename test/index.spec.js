@@ -172,6 +172,10 @@ describe('multiaddr validation', function () {
     })
   }
 
+  it('do not throw if multiaddr str is invalid', function () {
+    expect(mafmt.HTTP.matches('/http-google-com')).to.be.eql(false)
+  })
+
   it('DNS validation', function () {
     assertMatches(mafmt.DNS, goodDNS)
     assertMismatches(mafmt.DNS, badDNS, badIP)
