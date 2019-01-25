@@ -1,3 +1,13 @@
+<a name="6.0.5"></a>
+## [6.0.5](https://github.com/multiformats/js-mafmt/compare/v6.0.4...v6.0.5) (2019-01-25)
+
+
+### Bug Fixes
+
+* do not throw if multiaddr str is invalid, fixes [#25](https://github.com/multiformats/js-mafmt/issues/25) ([#36](https://github.com/multiformats/js-mafmt/issues/36)) ([5187d59](https://github.com/multiformats/js-mafmt/commit/5187d59))
+
+
+
 <a name="6.0.4"></a>
 ## [6.0.4](https://github.com/multiformats/js-mafmt/compare/v6.0.3...v6.0.4) (2019-01-08)
 
