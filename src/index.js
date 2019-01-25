@@ -129,12 +129,14 @@ exports.IPFS = IPFS
  * Validation funcs
  */
 
-function and () {
-  const args = Array.from(arguments)
-
-  function matches (a) {
+function makeMatchesFunction (partialMatch) {
+  return function matches (a) {
     if (typeof a === 'string') {
-      a = multiaddr(a)
+      try {
+        a = multiaddr(a)
+      } catch (err) { // catch error
+        return false // also if it's invalid it's propably not matching as well so return false
+      }
     }
     let out = partialMatch(a.protoNames())
     if (out === null) {
@@ -142,7 +144,10 @@ function and () {
     }
     return out.length === 0
   }
+}
 
+function and () {
+  const args = Array.from(arguments)
   function partialMatch (a) {
     if (a.length < args.length) {
       return null
@@ -163,24 +168,13 @@ function and () {
   return {
     toString: function () { return '{ ' + args.join(' ') + ' }' },
     input: args,
-    matches: matches,
+    matches: makeMatchesFunction(partialMatch),
     partialMatch: partialMatch
   }
 }
 
 function or () {
   const args = Array.from(arguments)
-
-  function matches (a) {
-    if (typeof a === 'string') {
-      a = multiaddr(a)
-    }
-    const out = partialMatch(a.protoNames())
-    if (out === null) {
-      return false
-    }
-    return out.length === 0
-  }
 
   function partialMatch (a) {
     let out = null
@@ -200,7 +194,7 @@ function or () {
   const result = {
     toString: function () { return '{ ' + args.join(' ') + ' }' },
     input: args,
-    matches: matches,
+    matches: makeMatchesFunction(partialMatch),
     partialMatch: partialMatch
   }
 
@@ -212,7 +206,11 @@ function base (n) {
 
   function matches (a) {
     if (typeof a === 'string') {
-      a = multiaddr(a)
+      try {
+        a = multiaddr(a)
+      } catch (err) { // catch error
+        return false // also if it's invalid it's propably not matching as well so return false
+      }
     }
 
     const pnames = a.protoNames()
