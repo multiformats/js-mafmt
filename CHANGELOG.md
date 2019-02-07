@@ -1,3 +1,13 @@
+<a name="6.0.6"></a>
+## [6.0.6](https://github.com/multiformats/js-mafmt/compare/v6.0.5...v6.0.6) (2019-02-07)
+
+
+### Features
+
+* add /p2p-stardust ([#35](https://github.com/multiformats/js-mafmt/issues/35)) ([9b0c199](https://github.com/multiformats/js-mafmt/commit/9b0c199)), closes [libp2p/js-libp2p-websocket-star#70](https://github.com/libp2p/js-libp2p-websocket-star/issues/70)
+
+
+
 <a name="6.0.5"></a>
 ## [6.0.5](https://github.com/multiformats/js-mafmt/compare/v6.0.4...v6.0.5) (2019-01-25)
 
