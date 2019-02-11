@@ -24,7 +24,7 @@ npm install mafmt
 ## Usage
 
 ```js
-const mafmt = require('msfmt')
+const mafmt = require('mafmt')
 
 mafmt.DNS.matches('/dns4/ipfs.io') // true
 ```
