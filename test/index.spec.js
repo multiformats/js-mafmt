@@ -4,6 +4,7 @@
 
 const expect = require('chai').expect
 const mafmt = require('./../src')
+const multiaddr = require('multiaddr')
 
 describe('multiaddr validation', function () {
   const goodDNS = [
@@ -167,7 +168,10 @@ describe('multiaddr validation', function () {
     tests.forEach(function (test) {
       test.forEach(function (testcase) {
         try {
-          expect(p.matches(testcase)).to.be.eql(true)
+          expect(p.matches(testcase), `assertMatches: ${testcase} (string)`).to.be.eql(true)
+          const ma = multiaddr(testcase)
+          expect(p.matches(ma), `assertMatches: ${testcase} (multiaddr object)`).to.be.eql(true)
+          expect(p.matches(ma.buffer), `assertMatches: ${testcase} (multiaddr.buffer)`).to.be.eql(true)
         } catch (err) {
           err.stack = '[testcase=' + JSON.stringify(testcase) + ', shouldMatch=true] ' + err.stack
           throw err
@@ -181,7 +185,20 @@ describe('multiaddr validation', function () {
     tests.forEach(function (test) {
       test.forEach(function (testcase) {
         try {
-          expect(p.matches(testcase)).to.be.eql(false)
+          expect(p.matches(testcase), `assertMismatches: ${testcase} (string)`).to.be.eql(false)
+          let validMultiaddrObj
+          try {
+            // if testcase string happens to be a valid multiaddr,
+            // we expect 'p' test to also return false for Multiaddr object and Buffer versions
+            validMultiaddrObj = multiaddr(testcase)
+          } catch (e) {
+            // Ignoring testcase as the string is not a multiaddr
+            // (There is a separate 'Buffer is invalid' test later below)
+          }
+          if (validMultiaddrObj) {
+            expect(p.matches(validMultiaddrObj), `assertMismatches: ${testcase} (multiaddr object)`).to.be.eql(false)
+            expect(p.matches(validMultiaddrObj.buffer), `assertMismatches: ${testcase} (multiaddr.buffer)`).to.be.eql(false)
+          }
         } catch (err) {
           err.stack = '[testcase=' + JSON.stringify(testcase) + ', shouldMatch=false] ' + err.stack
           throw err
@@ -192,6 +209,10 @@ describe('multiaddr validation', function () {
 
   it('do not throw if multiaddr str is invalid', function () {
     expect(mafmt.HTTP.matches('/http-google-com')).to.be.eql(false)
+  })
+
+  it('do not throw if multiaddr Buffer is invalid', function () {
+    expect(mafmt.HTTP.matches(Buffer.from('no spoon'))).to.be.eql(false)
   })
 
   it('DNS validation', function () {
