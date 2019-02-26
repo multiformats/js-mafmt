@@ -138,7 +138,7 @@ exports.IPFS = IPFS
 
 function makeMatchesFunction (partialMatch) {
   return function matches (a) {
-    if (typeof a === 'string') {
+    if (!multiaddr.isMultiaddr(a)) {
       try {
         a = multiaddr(a)
       } catch (err) { // catch error
