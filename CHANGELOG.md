@@ -1,3 +1,13 @@
+<a name="6.0.7"></a>
+## [6.0.7](https://github.com/multiformats/js-mafmt/compare/v6.0.6...v6.0.7) (2019-02-26)
+
+
+### Features
+
+* accept Buffer input ([#39](https://github.com/multiformats/js-mafmt/issues/39)) ([c2adc27](https://github.com/multiformats/js-mafmt/commit/c2adc27)), closes [/github.com/multiformats/js-mafmt/blob/v6.0.6/src/index.js#L148](https://github.com//github.com/multiformats/js-mafmt/blob/v6.0.6/src/index.js/issues/L148)
+
+
+
 <a name="6.0.6"></a>
 ## [6.0.6](https://github.com/multiformats/js-mafmt/compare/v6.0.5...v6.0.6) (2019-02-07)
 
