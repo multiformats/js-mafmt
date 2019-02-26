@@ -1,6 +1,6 @@
 {
   "name": "mafmt",
-  "version": "6.0.6",
+  "version": "6.0.7",
   "description": "A multiaddr validator",
   "leadMaintainer": "Vasco Santos <vasco.santos@moxy.studio>",
   "main": "src/index.js",
@@ -41,9 +41,11 @@
     "Jacob Heun <jacobheun@gmail.com>",
     "Jeromy <jeromyj@gmail.com>",
     "Jeromy Johnson <why@ipfs.io>",
+    "João Antunes <me@jgantunes.com>",
     "Maciej Krüger <mkg20001@gmail.com>",
-    "Vasco Santos <vasco.santos@moxy.studio>",
+    "Marcin Rataj <lidel@lidel.org>",
     "Vasco Santos <vasco.santos@ua.pt>",
+    "Vasco Santos <vasco.santos@moxy.studio>",
     "dignifiedquire <dignifiedquire@gmail.com>",
     "dmitriy ryajov <dryajov@dmitriys-MBP.HomeNET>",
     "victorbjelkholm <victorbjelkholm@gmail.com>"
