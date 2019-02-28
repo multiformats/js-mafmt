@@ -12,11 +12,7 @@ describe('multiaddr validation', function () {
     '/dnsaddr/ipfs.io',
     '/dns4/ipfs.io',
     '/dns4/libp2p.io',
-    '/dns6/protocol.ai',
-    '/dns/ipfs.io/tcp/80',
-    '/dns4/protocol.ai/tcp/80',
-    '/dns6/protocol.ai/tcp/80',
-    '/dnsaddr/protocol.ai/tcp/80'
+    '/dns6/protocol.ai'
   ]
 
   const badDNS = [
@@ -37,6 +33,7 @@ describe('multiaddr validation', function () {
     '/ip4/0.0.7.6/tcp/1234',
     '/ip6/::/tcp/0',
     '/dns4/protocol.ai/tcp/80',
+    '/dns6/protocol.ai/tcp/80',
     '/dnsaddr/protocol.ai/tcp/80'
   ]
 
@@ -67,7 +64,6 @@ describe('multiaddr validation', function () {
   ]
 
   const goodHTTP = [
-    '/dnsaddr/ipfs.io',
     '/dnsaddr/ipfs.io/http',
     '/dnsaddr/ipfs.io/tcp/3456/http',
     '/ip4/0.0.0.0/http',
