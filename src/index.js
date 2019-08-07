@@ -51,12 +51,16 @@ const HTTPS = or(
 
 const WebRTCStar = or(
   and(WebSockets, base('p2p-webrtc-star'), base('ipfs')),
-  and(WebSocketsSecure, base('p2p-webrtc-star'), base('ipfs'))
+  and(WebSocketsSecure, base('p2p-webrtc-star'), base('ipfs')),
+  and(WebSockets, base('p2p-webrtc-star'), base('p2p')),
+  and(WebSocketsSecure, base('p2p-webrtc-star'), base('p2p'))
 )
 
 const WebSocketStar = or(
   and(WebSockets, base('p2p-websocket-star'), base('ipfs')),
   and(WebSocketsSecure, base('p2p-websocket-star'), base('ipfs')),
+  and(WebSockets, base('p2p-websocket-star'), base('p2p')),
+  and(WebSocketsSecure, base('p2p-websocket-star'), base('p2p')),
   and(WebSockets, base('p2p-websocket-star')),
   and(WebSocketsSecure, base('p2p-websocket-star'))
 )
@@ -83,16 +87,18 @@ const Stardust = or(
   and(Reliable, base('p2p-stardust'))
 )
 
-let _IPFS = or(
+const _P2P = or(
   and(Reliable, base('ipfs')),
+  and(Reliable, base('p2p')),
   WebRTCStar,
-  base('ipfs')
+  base('ipfs'),
+  base('p2p')
 )
 
 const _Circuit = or(
-  and(_IPFS, base('p2p-circuit'), _IPFS),
-  and(_IPFS, base('p2p-circuit')),
-  and(base('p2p-circuit'), _IPFS),
+  and(_P2P, base('p2p-circuit'), _P2P),
+  and(_P2P, base('p2p-circuit')),
+  and(base('p2p-circuit'), _P2P),
   and(Reliable, base('p2p-circuit')),
   and(base('p2p-circuit'), Reliable),
   base('p2p-circuit')
@@ -105,12 +111,12 @@ const CircuitRecursive = () => or(
 
 const Circuit = CircuitRecursive()
 
-const IPFS = or(
-  and(Circuit, _IPFS, Circuit),
-  and(_IPFS, Circuit),
-  and(Circuit, _IPFS),
+const P2P = or(
+  and(Circuit, _P2P, Circuit),
+  and(_P2P, Circuit),
+  and(Circuit, _P2P),
   Circuit,
-  _IPFS
+  _P2P
 )
 
 exports.DNS = DNS
@@ -130,7 +136,8 @@ exports.WebRTCDirect = WebRTCDirect
 exports.Reliable = Reliable
 exports.Stardust = Stardust
 exports.Circuit = Circuit
-exports.IPFS = IPFS
+exports.P2P = P2P
+exports.IPFS = P2P
 
 /*
  * Validation funcs
@@ -145,7 +152,7 @@ function makeMatchesFunction (partialMatch) {
         return false // also if it's invalid it's propably not matching as well so return false
       }
     }
-    let out = partialMatch(a.protoNames())
+    const out = partialMatch(a.protoNames())
     if (out === null) {
       return false
     }
