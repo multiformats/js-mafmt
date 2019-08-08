@@ -1,3 +1,13 @@
+<a name="6.0.8"></a>
+## [6.0.8](https://github.com/multiformats/js-mafmt/compare/v6.0.7...v6.0.8) (2019-08-08)
+
+
+### Features
+
+* p2p and dns support ([#42](https://github.com/multiformats/js-mafmt/issues/42)) ([09160b5](https://github.com/multiformats/js-mafmt/commit/09160b5))
+
+
+
 <a name="6.0.7"></a>
 ## [6.0.7](https://github.com/multiformats/js-mafmt/compare/v6.0.6...v6.0.7) (2019-02-26)
 
