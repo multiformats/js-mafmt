@@ -8,13 +8,11 @@ const multiaddr = require('multiaddr')
 
 describe('multiaddr validation', function () {
   const goodDNS = [
+    '/dns/ipfs.io',
     '/dnsaddr/ipfs.io',
     '/dns4/ipfs.io',
     '/dns4/libp2p.io',
-    '/dns6/protocol.ai',
-    '/dns4/protocol.ai/tcp/80',
-    '/dns6/protocol.ai/tcp/80',
-    '/dnsaddr/protocol.ai/tcp/80'
+    '/dns6/protocol.ai'
   ]
 
   const badDNS = [
@@ -35,6 +33,7 @@ describe('multiaddr validation', function () {
     '/ip4/0.0.7.6/tcp/1234',
     '/ip6/::/tcp/0',
     '/dns4/protocol.ai/tcp/80',
+    '/dns6/protocol.ai/tcp/80',
     '/dnsaddr/protocol.ai/tcp/80'
   ]
 
@@ -65,7 +64,6 @@ describe('multiaddr validation', function () {
   ]
 
   const goodHTTP = [
-    '/dnsaddr/ipfs.io',
     '/dnsaddr/ipfs.io/http',
     '/dnsaddr/ipfs.io/tcp/3456/http',
     '/ip4/0.0.0.0/http',
@@ -100,7 +98,9 @@ describe('multiaddr validation', function () {
     '/dnsaddr/ipfs.io/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/dnsaddr/ipfs.io/wss/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ip6/::/tcp/0/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo5',
-    '/dns4/wrtc-star.discovery.libp2p.io/tcp/443/wss/p2p-webrtc-star/ipfs/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79'
+    '/dns4/wrtc-star.discovery.libp2p.io/tcp/443/wss/p2p-webrtc-star/ipfs/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/dns/wrtc-star.discovery.libp2p.io/wss/p2p-webrtc-star/ipfs/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/dns/wrtc-star.discovery.libp2p.io/tcp/443/wss/p2p-webrtc-star/ipfs/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79'
   ]
 
   const goodWebRTCDirect = [
@@ -160,7 +160,12 @@ describe('multiaddr validation', function () {
     '/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ip4/1.2.3.4/tcp/3456/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit',
-    '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj'
+    '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
+    '/ip4/127.0.0.1/tcp/20008/ws/p2p/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
+    '/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-star/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip4/1.2.3.4/tcp/3456/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit',
+    '/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/p2p/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj'
   ].concat(goodCircuit)
 
   function assertMatches (p) {

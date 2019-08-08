@@ -53,7 +53,7 @@ Where `<FORMAT>` may be:
 | `WebRTCDirect` | a "p2p-webrtc-direct" over `HTTP` or "p2p-webrtc-direct" over `HTTPS` format multiaddr | `/ip4/1.2.3.4/tcp/3456/http/p2p-webrtc-direct` |
 | `Reliable` | a `WebSockets` or `WebSocketsSecure` or `HTTP` or `HTTPS` or `WebRTCStar` or `WebRTCDirect` or `TCP` or `UTP` format multiaddr | `/dnsaddr/ipfs.io/wss` |
 | `Circuit` |  | `/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj` |
-| `IPFS` | "ipfs" over `Reliable` or `WebRTCStar` or "ipfs" format multiaddr | `/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4` <br> `/ip4/127.0.0.1/tcp/20008/ws/ipfs/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj` |
+| `P2P` | "p2p", aka "ipfs", over `Reliable` or `WebRTCStar` or "p2p" format multiaddr | `/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4` <br> `/ip4/127.0.0.1/tcp/20008/ws/p2p/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj` |
 
 Where `multiaddr` may be:
 

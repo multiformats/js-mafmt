@@ -28,11 +28,11 @@
   "bugs": "https://github.com/multiformats/js-mafmt/issues",
   "homepage": "https://github.com/multiformats/js-mafmt#readme",
   "devDependencies": {
-    "aegir": "^18.0.3",
+    "aegir": "^20.0.0",
     "chai": "^4.2.0"
   },
   "dependencies": {
-    "multiaddr": "^6.0.4"
+    "multiaddr": "^6.1.0"
   },
   "contributors": [
     "Alan Shaw <alan@tableflip.io>",
