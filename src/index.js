@@ -45,15 +45,11 @@ const HTTPS = or(
 )
 
 const WebRTCStar = or(
-  and(WebSockets, base('p2p-webrtc-star'), base('ipfs')),
-  and(WebSocketsSecure, base('p2p-webrtc-star'), base('ipfs')),
   and(WebSockets, base('p2p-webrtc-star'), base('p2p')),
   and(WebSocketsSecure, base('p2p-webrtc-star'), base('p2p'))
 )
 
 const WebSocketStar = or(
-  and(WebSockets, base('p2p-websocket-star'), base('ipfs')),
-  and(WebSocketsSecure, base('p2p-websocket-star'), base('ipfs')),
   and(WebSockets, base('p2p-websocket-star'), base('p2p')),
   and(WebSocketsSecure, base('p2p-websocket-star'), base('p2p')),
   and(WebSockets, base('p2p-websocket-star')),
@@ -78,15 +74,13 @@ const Reliable = or(
 
 // Unlike ws-star, stardust can run over any transport thus removing the requirement for websockets (but don't even think about running a stardust server over webrtc-star ;) )
 const Stardust = or(
-  and(Reliable, base('p2p-stardust'), base('ipfs')),
+  and(Reliable, base('p2p-stardust'), base('p2p')),
   and(Reliable, base('p2p-stardust'))
 )
 
 const _P2P = or(
-  and(Reliable, base('ipfs')),
   and(Reliable, base('p2p')),
   WebRTCStar,
-  base('ipfs'),
   base('p2p')
 )
 
