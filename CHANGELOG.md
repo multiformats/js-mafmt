@@ -1,3 +1,8 @@
+<a name="6.0.10"></a>
+## [6.0.10](https://github.com/multiformats/js-mafmt/compare/v6.0.9...v6.0.10) (2019-09-11)
+
+
+
 <a name="6.0.9"></a>
 ## [6.0.9](https://github.com/multiformats/js-mafmt/compare/v6.0.8...v6.0.9) (2019-09-10)
 
