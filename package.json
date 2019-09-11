@@ -17,7 +17,8 @@
     "coverage-publish": "aegir coverage publish"
   },
   "pre-push": [
-    "lint"
+    "lint",
+    "test"
   ],
   "repository": "github:multiformats/js-mafmt",
   "keywords": [
@@ -31,7 +32,7 @@
     "chai": "^4.2.0"
   },
   "dependencies": {
-    "multiaddr": "^7.0.0"
+    "multiaddr": "^6.1.0"
   },
   "contributors": [
     "Alan Shaw <alan@tableflip.io>",
