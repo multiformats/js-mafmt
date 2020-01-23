@@ -1,3 +1,13 @@
+<a name="7.0.1"></a>
+## [7.0.1](https://github.com/multiformats/js-mafmt/compare/v7.0.0...v7.0.1) (2020-01-23)
+
+
+### Bug Fixes
+
+* webrtc-star should not require the p2p codec ([#47](https://github.com/multiformats/js-mafmt/issues/47)) ([7112ab7](https://github.com/multiformats/js-mafmt/commit/7112ab7))
+
+
+
 <a name="7.0.0"></a>
 # [7.0.0](https://github.com/multiformats/js-mafmt/compare/v6.0.10...v7.0.0) (2019-09-11)
 
