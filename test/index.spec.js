@@ -98,7 +98,9 @@ describe('multiaddr validation', function () {
     '/dnsaddr/ipfs.io/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/dnsaddr/ipfs.io/wss/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ip6/::/tcp/0/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo5',
+    '/ip6/::/tcp/0/ws/p2p-webrtc-star',
     '/dns4/wrtc-star.discovery.libp2p.io/tcp/443/wss/p2p-webrtc-star/ipfs/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/dns4/wrtc-star.discovery.libp2p.io/tcp/443/wss/p2p-webrtc-star',
     '/dns/wrtc-star.discovery.libp2p.io/wss/p2p-webrtc-star/ipfs/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
     '/dns/wrtc-star.discovery.libp2p.io/tcp/443/wss/p2p-webrtc-star/ipfs/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79'
   ]
@@ -284,7 +286,7 @@ describe('multiaddr validation', function () {
 
   it('WebRTCStar validation', function () {
     assertMatches(mafmt.WebRTCStar, goodWebRTCStar)
-    assertMismatches(mafmt.WebRTCStar, goodIP, goodUDP, badWS)
+    assertMismatches(mafmt.WebRTCStar, goodIP, goodUDP, badWSS)
   })
 
   it('WebRTCDirect validation', function () {
