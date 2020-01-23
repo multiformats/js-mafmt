@@ -46,7 +46,9 @@ const HTTPS = or(
 
 const WebRTCStar = or(
   and(WebSockets, base('p2p-webrtc-star'), base('p2p')),
-  and(WebSocketsSecure, base('p2p-webrtc-star'), base('p2p'))
+  and(WebSocketsSecure, base('p2p-webrtc-star'), base('p2p')),
+  and(WebSockets, base('p2p-webrtc-star')),
+  and(WebSocketsSecure, base('p2p-webrtc-star'))
 )
 
 const WebSocketStar = or(
