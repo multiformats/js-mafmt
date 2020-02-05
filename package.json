@@ -27,6 +27,8 @@
   "bugs": "https://github.com/multiformats/js-mafmt/issues",
   "homepage": "https://github.com/multiformats/js-mafmt#readme",
   "devDependencies": {
+    "@types/chai": "^4.2.8",
+    "@types/mocha": "^7.0.1",
     "aegir": "^20.0.0",
     "chai": "^4.2.0"
   },
