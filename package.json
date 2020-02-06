@@ -10,6 +10,7 @@
     "test": "aegir test",
     "test:node": "aegir test --target node",
     "test:browser": "aegir test --target browser",
+    "test:types": "npx tsc",
     "release": "aegir release",
     "release-minor": "aegir release --type minor",
     "release-major": "aegir release --type major",
@@ -27,11 +28,13 @@
   "bugs": "https://github.com/multiformats/js-mafmt/issues",
   "homepage": "https://github.com/multiformats/js-mafmt#readme",
   "devDependencies": {
-    "aegir": "^20.0.0",
+    "@types/chai": "^4.2.8",
+    "@types/mocha": "^7.0.1",
+    "aegir": "^20.6.0",
     "chai": "^4.2.0"
   },
   "dependencies": {
-    "multiaddr": "^7.0.0"
+    "multiaddr": "^7.3.0"
   },
   "contributors": [
     "Alan Shaw <alan@tableflip.io>",
