@@ -1,6 +1,6 @@
 {
   "name": "mafmt",
-  "version": "7.0.1",
+  "version": "7.1.0",
   "description": "A multiaddr validator",
   "leadMaintainer": "Vasco Santos <vasco.santos@moxy.studio>",
   "main": "src/index.js",
@@ -38,6 +38,7 @@
   },
   "contributors": [
     "Alan Shaw <alan@tableflip.io>",
+    "Cayman <caymannava@gmail.com>",
     "David Dias <daviddias.p@gmail.com>",
     "Hugo Dias <mail@hugodias.me>",
     "Jacob Heun <jacobheun@gmail.com>",
