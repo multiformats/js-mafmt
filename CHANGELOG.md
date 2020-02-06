@@ -1,3 +1,13 @@
+<a name="7.1.0"></a>
+# [7.1.0](https://github.com/multiformats/js-mafmt/compare/v7.0.1...v7.1.0) (2020-02-06)
+
+
+### Features
+
+* add typescript types + type tests ([#48](https://github.com/multiformats/js-mafmt/issues/48)) ([74830fa](https://github.com/multiformats/js-mafmt/commit/74830fa))
+
+
+
 <a name="7.0.1"></a>
 ## [7.0.1](https://github.com/multiformats/js-mafmt/compare/v7.0.0...v7.0.1) (2020-01-23)
 
