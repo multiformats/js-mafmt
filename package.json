@@ -30,7 +30,7 @@
   "devDependencies": {
     "@types/chai": "^4.2.8",
     "@types/mocha": "^7.0.1",
-    "aegir": "^20.6.0",
+    "aegir": "^21.3.0",
     "chai": "^4.2.0"
   },
   "dependencies": {
