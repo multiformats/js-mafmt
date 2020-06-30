@@ -2,9 +2,11 @@
 
 'use strict'
 
+const { Buffer } = require('buffer')
 const expect = require('chai').expect
-const mafmt = require('./../src')
 const multiaddr = require('multiaddr')
+
+const mafmt = require('./../src')
 
 describe('multiaddr validation', function () {
   const goodDNS = [
