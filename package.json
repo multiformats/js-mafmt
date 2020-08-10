@@ -1,6 +1,6 @@
 {
   "name": "mafmt",
-  "version": "7.1.0",
+  "version": "8.0.0",
   "description": "A multiaddr validator",
   "leadMaintainer": "Vasco Santos <vasco.santos@moxy.studio>",
   "main": "src/index.js",
@@ -37,20 +37,19 @@
     "multiaddr": "^8.0.0"
   },
   "contributors": [
-    "Alan Shaw <alan@tableflip.io>",
-    "Cayman <caymannava@gmail.com>",
     "David Dias <daviddias.p@gmail.com>",
-    "Hugo Dias <mail@hugodias.me>",
-    "Jacob Heun <jacobheun@gmail.com>",
-    "Jeromy <jeromyj@gmail.com>",
-    "Jeromy Johnson <why@ipfs.io>",
-    "João Antunes <me@jgantunes.com>",
-    "Maciej Krüger <mkg20001@gmail.com>",
-    "Marcin Rataj <lidel@lidel.org>",
     "Vasco Santos <vasco.santos@moxy.studio>",
-    "Vasco Santos <vasco.santos@ua.pt>",
-    "dignifiedquire <dignifiedquire@gmail.com>",
     "dmitriy ryajov <dryajov@dmitriys-MBP.HomeNET>",
-    "victorbjelkholm <victorbjelkholm@gmail.com>"
+    "Jacob Heun <jacobheun@gmail.com>",
+    "Maciej Krüger <mkg20001@gmail.com>",
+    "Alan Shaw <alan@tableflip.io>",
+    "Jeromy <jeromyj@gmail.com>",
+    "dignifiedquire <dignifiedquire@gmail.com>",
+    "ᴠɪᴄᴛᴏʀ ʙᴊᴇʟᴋʜᴏʟᴍ <victorbjelkholm@gmail.com>",
+    "Alex Potsides <alex@achingbrain.net>",
+    "Cayman <caymannava@gmail.com>",
+    "Hugo Dias <mail@hugodias.me>",
+    "João Antunes <me@jgantunes.com>",
+    "Marcin Rataj <lidel@lidel.org>"
   ]
 }
