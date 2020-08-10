@@ -1,3 +1,18 @@
+<a name="8.0.0"></a>
+# [8.0.0](https://github.com/multiformats/js-mafmt/compare/v7.1.0...v8.0.0) (2020-08-10)
+
+
+### Bug Fixes
+
+* replace node buffers with uint8arrays ([#59](https://github.com/multiformats/js-mafmt/issues/59)) ([022ab87](https://github.com/multiformats/js-mafmt/commit/022ab87))
+
+
+### BREAKING CHANGES
+
+* - Now uses a version of `multiaddr` than has a `.bytes` property instead of `.buffer`
+
+
+
 <a name="7.1.0"></a>
 # [7.1.0](https://github.com/multiformats/js-mafmt/compare/v7.0.1...v7.1.0) (2020-02-06)
 
