@@ -31,11 +31,10 @@
     "@types/chai": "^4.2.8",
     "@types/mocha": "^8.0.0",
     "aegir": "^25.0.0",
-    "buffer": "^5.6.0",
-    "chai": "^4.2.0"
+    "uint8arrays": "^1.1.0"
   },
   "dependencies": {
-    "multiaddr": "^7.3.0"
+    "multiaddr": "^8.0.0"
   },
   "contributors": [
     "Alan Shaw <alan@tableflip.io>",

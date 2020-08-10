@@ -3,7 +3,7 @@ import Multiaddr = require('multiaddr');
 export declare interface Mafmt {
   toString(): string;
   input?: (Mafmt | (() => Mafmt))[];
-  matches: (a: string | Buffer | Multiaddr) => boolean;
+  matches: (a: string | Uint8Array | Multiaddr) => boolean;
   partialMatch: (protos: string[]) => boolean;
 }
 
