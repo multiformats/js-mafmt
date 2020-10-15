@@ -7,9 +7,10 @@ const multiaddr = require('multiaddr')
  */
 const DNS4 = base('dns4')
 const DNS6 = base('dns6')
+const DNSADDR = base('dnsaddr')
 const DNS = or(
   base('dns'),
-  base('dnsaddr'),
+  DNSADDR,
   DNS4,
   DNS6
 )
@@ -71,7 +72,8 @@ const Reliable = or(
   WebRTCStar,
   WebRTCDirect,
   TCP,
-  UTP
+  UTP,
+  DNSADDR
 )
 
 // Unlike ws-star, stardust can run over any transport thus removing the requirement for websockets (but don't even think about running a stardust server over webrtc-star ;) )
@@ -113,6 +115,7 @@ const P2P = or(
 exports.DNS = DNS
 exports.DNS4 = DNS4
 exports.DNS6 = DNS6
+exports.DNSADDR = DNSADDR
 exports.IP = IP
 exports.TCP = TCP
 exports.UDP = UDP
