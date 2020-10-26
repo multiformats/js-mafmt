@@ -73,7 +73,7 @@ const Reliable = or(
   WebRTCDirect,
   TCP,
   UTP,
-  DNSADDR
+  DNS
 )
 
 // Unlike ws-star, stardust can run over any transport thus removing the requirement for websockets (but don't even think about running a stardust server over webrtc-star ;) )
