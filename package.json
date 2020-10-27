@@ -1,6 +1,6 @@
 {
   "name": "mafmt",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "A multiaddr validator",
   "leadMaintainer": "Vasco Santos <vasco.santos@moxy.studio>",
   "main": "src/index.js",
@@ -39,11 +39,11 @@
   "contributors": [
     "David Dias <daviddias.p@gmail.com>",
     "Vasco Santos <vasco.santos@moxy.studio>",
-    "dmitriy ryajov <dryajov@dmitriys-MBP.HomeNET>",
     "Jacob Heun <jacobheun@gmail.com>",
+    "dmitriy ryajov <dryajov@dmitriys-MBP.HomeNET>",
     "Maciej Krüger <mkg20001@gmail.com>",
-    "Alan Shaw <alan@tableflip.io>",
     "Jeromy <jeromyj@gmail.com>",
+    "Alan Shaw <alan@tableflip.io>",
     "dignifiedquire <dignifiedquire@gmail.com>",
     "ᴠɪᴄᴛᴏʀ ʙᴊᴇʟᴋʜᴏʟᴍ <victorbjelkholm@gmail.com>",
     "Alex Potsides <alex@achingbrain.net>",
