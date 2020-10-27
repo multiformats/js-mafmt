@@ -1,3 +1,23 @@
+<a name="8.0.1"></a>
+## [8.0.1](https://github.com/multiformats/js-mafmt/compare/v7.1.0...v8.0.1) (2020-10-27)
+
+
+### Bug Fixes
+
+* replace node buffers with uint8arrays ([#59](https://github.com/multiformats/js-mafmt/issues/59)) ([022ab87](https://github.com/multiformats/js-mafmt/commit/022ab87))
+
+
+### Features
+
+* add dnsnaddr p2p ([95d5178](https://github.com/multiformats/js-mafmt/commit/95d5178))
+
+
+### BREAKING CHANGES
+
+* - Now uses a version of `multiaddr` than has a `.bytes` property instead of `.buffer`
+
+
+
 <a name="8.0.0"></a>
 # [8.0.0](https://github.com/multiformats/js-mafmt/compare/v7.1.0...v8.0.0) (2020-08-10)
 
