@@ -18,7 +18,7 @@
         "paths": {
             "mafmt": [
                 "./src",
-                "../src",
+                "../src"
             ]
         },
         "types": [
@@ -30,7 +30,7 @@
         "forceConsistentCasingInFileNames": true
     },
     "files": [
-        "./src/index.d.ts",
+        "./src/index.d.ts"
     ],
     "include": [
         "./test/**/*.spec.js"
