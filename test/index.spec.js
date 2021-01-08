@@ -178,6 +178,17 @@ describe('multiaddr validation', function () {
     '/dns6/nyc-2.bootstrap.libp2p.io/tcp/443/wss/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
   ].concat(goodCircuit)
 
+  const goodQUIC = [
+    "/ip4/1.2.3.4/udp/1234/quic",
+    "/ip6/::/udp/1234/quic"
+  ]
+
+  const badQUIC = [
+    "/ip4/0.0.0.0/tcp/12345/quic",
+    "/ip6/1.2.3.4/ip4/0.0.0.0/udp/1234/quic",
+    "/quic"
+  ]
+
   function assertMatches (p) {
     const tests = Array.from(arguments).slice(1)
     tests.forEach(function (test) {
@@ -307,5 +318,10 @@ describe('multiaddr validation', function () {
 
   it('IPFS validation', function () {
     assertMatches(mafmt.IPFS, goodIPFS)
+  })
+
+  it('QUIC validation', function () {
+    assertMatches(mafmt.QUIC, goodQUIC)
+    assertMismatches(mafmt.QUIC, badQUIC)
   })
 })

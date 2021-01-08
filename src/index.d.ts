@@ -26,3 +26,4 @@ export const Stardust: Mafmt;
 export const Circuit: Mafmt;
 export const P2P: Mafmt;
 export const IPFS: Mafmt;
+export const QUIC: Mafmt;
