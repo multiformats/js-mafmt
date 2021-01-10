@@ -179,14 +179,14 @@ describe('multiaddr validation', function () {
   ].concat(goodCircuit)
 
   const goodQUIC = [
-    "/ip4/1.2.3.4/udp/1234/quic",
-    "/ip6/::/udp/1234/quic"
+    '/ip4/1.2.3.4/udp/1234/quic',
+    '/ip6/::/udp/1234/quic'
   ]
 
   const badQUIC = [
-    "/ip4/0.0.0.0/tcp/12345/quic",
-    "/ip6/1.2.3.4/ip4/0.0.0.0/udp/1234/quic",
-    "/quic"
+    '/ip4/0.0.0.0/tcp/12345/quic',
+    '/ip6/1.2.3.4/ip4/0.0.0.0/udp/1234/quic',
+    '/quic'
   ]
 
   function assertMatches (p) {
