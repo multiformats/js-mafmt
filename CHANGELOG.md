@@ -1,3 +1,12 @@
+## [8.0.3](https://github.com/multiformats/js-mafmt/compare/v8.0.2...v8.0.3) (2021-01-11)
+
+
+### Bug Fixes
+
+* add webrtc direct with p2p as valid P2P multiaddr ([#71](https://github.com/multiformats/js-mafmt/issues/71)) ([c8430c1](https://github.com/multiformats/js-mafmt/commit/c8430c1556edf687d22f2c00eb3b6ff96b580aa5))
+
+
+
 ## [8.0.2](https://github.com/multiformats/js-mafmt/compare/v8.0.1...v8.0.2) (2020-12-28)
 
 
