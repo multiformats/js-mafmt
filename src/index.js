@@ -60,6 +60,8 @@ const WebSocketStar = or(
 )
 
 const WebRTCDirect = or(
+  and(HTTP, base('p2p-webrtc-direct'), base('p2p')),
+  and(HTTPS, base('p2p-webrtc-direct'), base('p2p')),
   and(HTTP, base('p2p-webrtc-direct')),
   and(HTTPS, base('p2p-webrtc-direct'))
 )
@@ -85,6 +87,7 @@ const Stardust = or(
 const _P2P = or(
   and(Reliable, base('p2p')),
   WebRTCStar,
+  WebRTCDirect,
   base('p2p')
 )
 
