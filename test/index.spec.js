@@ -262,6 +262,11 @@ describe('multiaddr validation', function () {
     assertMismatches(mafmt.UDP, badUDP, goodIP, goodTCP, goodUTP)
   })
 
+  it('QUIC validation', function () {
+    assertMatches(mafmt.QUIC, goodQUIC)
+    assertMismatches(mafmt.QUIC, badQUIC)
+  })
+
   it('UTP validation', function () {
     assertMatches(mafmt.UTP, goodUTP)
     assertMismatches(mafmt.UTP, badUTP, goodIP, goodTCP, goodUDP)
@@ -319,10 +324,5 @@ describe('multiaddr validation', function () {
 
   it('IPFS validation', function () {
     assertMatches(mafmt.IPFS, goodIPFS)
-  })
-
-  it('QUIC validation', function () {
-    assertMatches(mafmt.QUIC, goodQUIC)
-    assertMismatches(mafmt.QUIC, badQUIC)
   })
 })
