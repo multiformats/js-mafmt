@@ -1,3 +1,12 @@
+## [8.0.4](https://github.com/multiformats/js-mafmt/compare/v8.0.3...v8.0.4) (2021-01-13)
+
+
+### Features
+
+* add QUIC support ([#70](https://github.com/multiformats/js-mafmt/issues/70)) ([ac7d10c](https://github.com/multiformats/js-mafmt/commit/ac7d10c646f343edd3154bae504bc9a2dcd0d506))
+
+
+
 ## [8.0.3](https://github.com/multiformats/js-mafmt/compare/v8.0.2...v8.0.3) (2021-01-11)
 
 
