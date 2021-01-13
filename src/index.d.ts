@@ -13,6 +13,7 @@ export const DNS6: Mafmt;
 export const IP: Mafmt;
 export const TCP: Mafmt;
 export const UDP: Mafmt;
+export const QUIC: Mafmt;
 export const UTP: Mafmt;
 export const HTTP: Mafmt;
 export const HTTPS: Mafmt;

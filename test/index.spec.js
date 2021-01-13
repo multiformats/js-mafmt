@@ -55,6 +55,17 @@ describe('multiaddr validation', function () {
     '/ip6/fc00::/tcp/5523/udp/9543'
   ]
 
+  const goodQUIC = [
+    '/ip4/1.2.3.4/udp/1234/quic',
+    '/ip6/::/udp/1234/quic'
+  ]
+
+  const badQUIC = [
+    '/ip4/0.0.0.0/tcp/12345/quic',
+    '/ip6/1.2.3.4/ip4/0.0.0.0/udp/1234/quic',
+    '/quic'
+  ]
+
   const goodUTP = [
     '/ip4/1.2.3.4/udp/3456/utp',
     '/ip6/::/udp/0/utp'
@@ -169,6 +180,7 @@ describe('multiaddr validation', function () {
     '/ip4/127.0.0.1/tcp/20008/ws/p2p/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
     '/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-star/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/ip4/1.2.3.4/tcp/3456/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
+    '/ip4/1.2.3.4/udp/1234/quic/p2p/QmUjNmr8TgJCn1Ao7DvMy4cjoZU15b9bwSCBLE3vwXiwgj',
     '/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/p2p-circuit',
@@ -248,6 +260,11 @@ describe('multiaddr validation', function () {
   it('UDP validation', function () {
     assertMatches(mafmt.UDP, goodUDP)
     assertMismatches(mafmt.UDP, badUDP, goodIP, goodTCP, goodUTP)
+  })
+
+  it('QUIC validation', function () {
+    assertMatches(mafmt.QUIC, goodQUIC)
+    assertMismatches(mafmt.QUIC, badQUIC)
   })
 
   it('UTP validation', function () {

@@ -23,6 +23,8 @@ const TCP = or(
 const UDP = and(IP, base('udp'))
 const UTP = and(UDP, base('utp'))
 
+const QUIC = and(UDP, base('quic'))
+
 const WebSockets = or(
   and(TCP, base('ws')),
   and(DNS, base('ws'))
@@ -75,6 +77,7 @@ const Reliable = or(
   WebRTCDirect,
   TCP,
   UTP,
+  QUIC,
   DNS
 )
 
@@ -122,6 +125,7 @@ exports.DNSADDR = DNSADDR
 exports.IP = IP
 exports.TCP = TCP
 exports.UDP = UDP
+exports.QUIC = QUIC
 exports.UTP = UTP
 exports.HTTP = HTTP
 exports.HTTPS = HTTPS
