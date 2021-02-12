@@ -168,6 +168,7 @@ function and () {
       if (a === null) {
         return true
       }
+      return false
     })
 
     return a
@@ -194,6 +195,7 @@ function or () {
         out = res
         return true
       }
+      return false
     })
 
     return out
