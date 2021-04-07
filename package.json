@@ -30,7 +30,7 @@
   "devDependencies": {
     "@types/chai": "^4.2.8",
     "@types/mocha": "^8.0.0",
-    "aegir": "^32.0.2",
+    "aegir": "^33.0.0",
     "uint8arrays": "^2.0.5",
     "util": "^0.12.3"
   },
