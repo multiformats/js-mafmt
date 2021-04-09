@@ -6,20 +6,17 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "aegir lint",
-    "build": "aegir build",
+    "build": "aegir build --no-types",
     "test": "aegir test",
     "test:node": "aegir test --target node",
     "test:browser": "aegir test --target browser",
     "test:types": "npx tsc",
-    "release": "aegir release",
-    "release-minor": "aegir release --type minor",
-    "release-major": "aegir release --type major",
+    "release": "aegir release --no-types",
+    "release-minor": "aegir release --type minor --no-types",
+    "release-major": "aegir release --type major --no-types",
     "coverage": "aegir coverage",
     "coverage-publish": "aegir coverage publish"
   },
-  "pre-push": [
-    "lint"
-  ],
   "repository": "github:multiformats/js-mafmt",
   "keywords": [
     "multiaddr"
@@ -30,12 +27,12 @@
   "devDependencies": {
     "@types/chai": "^4.2.8",
     "@types/mocha": "^8.0.0",
-    "aegir": "^32.0.2",
+    "aegir": "^33.0.0",
     "uint8arrays": "^2.0.5",
     "util": "^0.12.3"
   },
   "dependencies": {
-    "multiaddr": "^8.0.0"
+    "multiaddr": "^9.0.1"
   },
   "contributors": [
     "David Dias <daviddias.p@gmail.com>",

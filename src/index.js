@@ -1,6 +1,6 @@
 'use strict'
 
-const multiaddr = require('multiaddr')
+const { Multiaddr } = require('multiaddr')
 
 /*
  * Valid combinations
@@ -118,27 +118,29 @@ const P2P = or(
   _P2P
 )
 
-exports.DNS = DNS
-exports.DNS4 = DNS4
-exports.DNS6 = DNS6
-exports.DNSADDR = DNSADDR
-exports.IP = IP
-exports.TCP = TCP
-exports.UDP = UDP
-exports.QUIC = QUIC
-exports.UTP = UTP
-exports.HTTP = HTTP
-exports.HTTPS = HTTPS
-exports.WebSockets = WebSockets
-exports.WebSocketsSecure = WebSocketsSecure
-exports.WebSocketStar = WebSocketStar
-exports.WebRTCStar = WebRTCStar
-exports.WebRTCDirect = WebRTCDirect
-exports.Reliable = Reliable
-exports.Stardust = Stardust
-exports.Circuit = Circuit
-exports.P2P = P2P
-exports.IPFS = P2P
+module.exports = {
+  DNS,
+  DNS4,
+  DNS6,
+  DNSADDR,
+  IP,
+  TCP,
+  UDP,
+  QUIC,
+  UTP,
+  HTTP,
+  HTTPS,
+  WebSockets,
+  WebSocketsSecure,
+  WebSocketStar,
+  WebRTCStar,
+  WebRTCDirect,
+  Reliable,
+  Stardust,
+  Circuit,
+  P2P,
+  IPFS: P2P
+}
 
 /*
  * Validation funcs
@@ -146,9 +148,9 @@ exports.IPFS = P2P
 
 function makeMatchesFunction (partialMatch) {
   return function matches (a) {
-    if (!multiaddr.isMultiaddr(a)) {
+    if (!Multiaddr.isMultiaddr(a)) {
       try {
-        a = multiaddr(a)
+        a = new Multiaddr(a)
       } catch (err) { // catch error
         return false // also if it's invalid it's propably not matching as well so return false
       }
@@ -224,7 +226,7 @@ function base (n) {
   function matches (a) {
     if (typeof a === 'string') {
       try {
-        a = multiaddr(a)
+        a = new Multiaddr(a)
       } catch (err) { // catch error
         return false // also if it's invalid it's propably not matching as well so return false
       }

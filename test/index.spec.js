@@ -3,7 +3,7 @@
 'use strict'
 
 const { expect } = require('aegir/utils/chai')
-const multiaddr = require('multiaddr')
+const { Multiaddr } = require('multiaddr')
 const uint8ArrayFromString = require('uint8arrays/from-string')
 
 const mafmt = require('./../src')
@@ -196,7 +196,7 @@ describe('multiaddr validation', function () {
       test.forEach(function (testcase) {
         try {
           expect(p.matches(testcase), `assertMatches: ${testcase} (string)`).to.be.eql(true)
-          const ma = multiaddr(testcase)
+          const ma = new Multiaddr(testcase)
           expect(p.matches(ma), `assertMatches: ${testcase} (multiaddr object)`).to.be.eql(true)
           expect(p.matches(ma.bytes), `assertMatches: ${testcase} (multiaddr.bytes)`).to.be.eql(true)
         } catch (err) {
@@ -217,7 +217,7 @@ describe('multiaddr validation', function () {
           try {
             // if testcase string happens to be a valid multiaddr,
             // we expect 'p' test to also return false for Multiaddr object and Uint8Array versions
-            validMultiaddrObj = multiaddr(testcase)
+            validMultiaddrObj = new Multiaddr(testcase)
           } catch (e) {
             // Ignoring testcase as the string is not a multiaddr
             // (There is a separate 'Uint8Array is invalid' test later below)
