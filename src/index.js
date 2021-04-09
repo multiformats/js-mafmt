@@ -1,6 +1,11 @@
 'use strict'
 
-const multiaddr = require('multiaddr')
+const { Multiaddr } = require('multiaddr')
+
+/**
+ * @typedef {(a: Multiaddr | string) => boolean} MatchesFunction
+ * @typedef {(a: string[]) => boolean | null | string[]} PartialMatchesFunction
+ */
 
 /*
  * Valid combinations
@@ -144,25 +149,44 @@ exports.IPFS = P2P
  * Validation funcs
  */
 
+/**
+ * @param {PartialMatchesFunction} partialMatch
+ */
 function makeMatchesFunction (partialMatch) {
-  return function matches (a) {
-    if (!multiaddr.isMultiaddr(a)) {
+  /**
+   * @type {MatchesFunction}
+   */
+  function matches (a) {
+    if (!Multiaddr.isMultiaddr(a)) {
       try {
-        a = multiaddr(a)
+        a = new Multiaddr(a)
       } catch (err) { // catch error
-        return false // also if it's invalid it's propably not matching as well so return false
+        return false // also if it's invalid it's probably not matching as well so return false
       }
     }
     const out = partialMatch(a.protoNames())
+
     if (out === null) {
       return false
     }
+
+    if (out === true || out === false) {
+      return out
+    }
+
     return out.length === 0
   }
+
+  return matches
 }
 
-function and () {
-  const args = Array.from(arguments)
+/**
+ * @param  {...any} args
+ */
+function and (...args) {
+  /**
+   * @type {PartialMatchesFunction}
+   */
   function partialMatch (a) {
     if (a.length < args.length) {
       return null
@@ -192,6 +216,9 @@ function and () {
 function or () {
   const args = Array.from(arguments)
 
+  /**
+   * @type {PartialMatchesFunction}
+   */
   function partialMatch (a) {
     let out = null
     args.some((arg) => {
@@ -218,13 +245,19 @@ function or () {
   return result
 }
 
+/**
+ * @param {string} n
+ */
 function base (n) {
   const name = n
 
+  /**
+   * @type {MatchesFunction}
+   */
   function matches (a) {
     if (typeof a === 'string') {
       try {
-        a = multiaddr(a)
+        a = new Multiaddr(a)
       } catch (err) { // catch error
         return false // also if it's invalid it's propably not matching as well so return false
       }
@@ -237,6 +270,9 @@ function base (n) {
     return false
   }
 
+  /**
+   * @type {PartialMatchesFunction}
+   */
   function partialMatch (protos) {
     if (protos.length === 0) {
       return null
