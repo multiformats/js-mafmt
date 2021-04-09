@@ -191,7 +191,7 @@ describe('multiaddr validation', function () {
   ].concat(goodCircuit)
 
   /**
-   * @param {mafmt.Mafmt} p
+   * @param {import('../').Mafmt} p
    * @param {...string[]} tests
    */
   function assertMatches (p, ...tests) {
@@ -211,7 +211,7 @@ describe('multiaddr validation', function () {
   }
 
   /**
-   * @param {mafmt.Mafmt} p
+   * @param {import('../').Mafmt} p
    * @param {...string[]} tests
    */
   function assertMismatches (p, ...tests) {

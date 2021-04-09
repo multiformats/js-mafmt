@@ -4,6 +4,7 @@
   "description": "A multiaddr validator",
   "leadMaintainer": "Vasco Santos <vasco.santos@moxy.studio>",
   "main": "src/index.js",
+  "types": "dist/src/index.d.ts",
   "scripts": {
     "lint": "aegir lint",
     "build": "aegir build",
@@ -37,6 +38,11 @@
   "dependencies": {
     "multiaddr": "^9.0.1"
   },
+  "files": [
+    "src",
+    "dist",
+    "!dist/*.tsbuildinfo"
+  ],
   "contributors": [
     "David Dias <daviddias.p@gmail.com>",
     "Vasco Santos <vasco.santos@moxy.studio>",
