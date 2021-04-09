@@ -35,7 +35,7 @@
     "util": "^0.12.3"
   },
   "dependencies": {
-    "multiaddr": "^8.0.0"
+    "multiaddr": "^9.0.1"
   },
   "contributors": [
     "David Dias <daviddias.p@gmail.com>",
