@@ -59,6 +59,6 @@ Where `multiaddr` may be:
 
 * a [Multiaddr](https://www.npmjs.com/package/multiaddr)
 * a String
-* a [Buffer](https://www.npmjs.com/package/buffer)
+* a [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
 
 Returns `true`/`false`

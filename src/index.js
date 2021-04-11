@@ -1,6 +1,12 @@
 'use strict'
 
-const multiaddr = require('multiaddr')
+const { Multiaddr } = require('multiaddr')
+
+/**
+ * @typedef {import('./types').MatchesFunction} MatchesFunction
+ * @typedef {import('./types').PartialMatchesFunction} PartialMatchesFunction
+ * @typedef {import('./types').Mafmt} Mafmt
+ */
 
 /*
  * Valid combinations
@@ -118,37 +124,45 @@ const P2P = or(
   _P2P
 )
 
-exports.DNS = DNS
-exports.DNS4 = DNS4
-exports.DNS6 = DNS6
-exports.DNSADDR = DNSADDR
-exports.IP = IP
-exports.TCP = TCP
-exports.UDP = UDP
-exports.QUIC = QUIC
-exports.UTP = UTP
-exports.HTTP = HTTP
-exports.HTTPS = HTTPS
-exports.WebSockets = WebSockets
-exports.WebSocketsSecure = WebSocketsSecure
-exports.WebSocketStar = WebSocketStar
-exports.WebRTCStar = WebRTCStar
-exports.WebRTCDirect = WebRTCDirect
-exports.Reliable = Reliable
-exports.Stardust = Stardust
-exports.Circuit = Circuit
-exports.P2P = P2P
-exports.IPFS = P2P
+module.exports = {
+  DNS,
+  DNS4,
+  DNS6,
+  DNSADDR,
+  IP,
+  TCP,
+  UDP,
+  QUIC,
+  UTP,
+  HTTP,
+  HTTPS,
+  WebSockets,
+  WebSocketsSecure,
+  WebSocketStar,
+  WebRTCStar,
+  WebRTCDirect,
+  Reliable,
+  Stardust,
+  Circuit,
+  P2P,
+  IPFS: P2P
+}
 
 /*
  * Validation funcs
  */
 
+/**
+ * @param {PartialMatchesFunction} partialMatch
+ */
 function makeMatchesFunction (partialMatch) {
-  return function matches (a) {
-    if (!multiaddr.isMultiaddr(a)) {
+  /**
+   * @type {MatchesFunction}
+   */
+  function matches (a) {
+    if (!Multiaddr.isMultiaddr(a)) {
       try {
-        a = multiaddr(a)
+        a = new Multiaddr(a)
       } catch (err) { // catch error
         return false // also if it's invalid it's propably not matching as well so return false
       }
@@ -157,28 +171,50 @@ function makeMatchesFunction (partialMatch) {
     if (out === null) {
       return false
     }
+
+    if (out === true || out === false) {
+      return out
+    }
+
     return out.length === 0
   }
+
+  return matches
 }
 
-function and () {
-  const args = Array.from(arguments)
+/**
+ * @param {Array<Mafmt | (() => Mafmt)>} args
+ * @returns {Mafmt}
+ */
+function and (...args) {
+  /**
+   * @type {PartialMatchesFunction}
+   */
   function partialMatch (a) {
     if (a.length < args.length) {
       return null
     }
+
+    /** @type {boolean | string[] | null} */
+    let out = a
+
     args.some((arg) => {
-      a = typeof arg === 'function'
+      out = typeof arg === 'function'
         ? arg().partialMatch(a)
         : arg.partialMatch(a)
 
-      if (a === null) {
+      if (Array.isArray(out)) {
+        a = out
+      }
+
+      if (out === null) {
         return true
       }
+
       return false
     })
 
-    return a
+    return out
   }
 
   return {
@@ -189,9 +225,14 @@ function and () {
   }
 }
 
-function or () {
-  const args = Array.from(arguments)
-
+/**
+ * @param {Array<Mafmt | (() => Mafmt)>} args
+ * @returns {Mafmt}
+ */
+function or (...args) {
+  /**
+   * @type {PartialMatchesFunction}
+   */
   function partialMatch (a) {
     let out = null
     args.some((arg) => {
@@ -218,13 +259,20 @@ function or () {
   return result
 }
 
+/**
+ * @param {string} n
+ * @returns {Mafmt}
+ */
 function base (n) {
   const name = n
 
+  /**
+   * @type {MatchesFunction}
+   */
   function matches (a) {
     if (typeof a === 'string') {
       try {
-        a = multiaddr(a)
+        a = new Multiaddr(a)
       } catch (err) { // catch error
         return false // also if it's invalid it's propably not matching as well so return false
       }
@@ -237,6 +285,9 @@ function base (n) {
     return false
   }
 
+  /**
+   * @type {PartialMatchesFunction}
+   */
   function partialMatch (protos) {
     if (protos.length === 0) {
       return null
