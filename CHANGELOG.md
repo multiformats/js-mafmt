@@ -1,3 +1,7 @@
+# [9.0.0](https://github.com/multiformats/js-mafmt/compare/v8.0.4...v9.0.0) (2021-04-11)
+
+
+
 ## [8.0.4](https://github.com/multiformats/js-mafmt/compare/v8.0.3...v8.0.4) (2021-01-13)
 
 
