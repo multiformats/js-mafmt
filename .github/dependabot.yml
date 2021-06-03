@@ -6,12 +6,3 @@ updates:
     interval: daily
     time: "11:00"
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: multiaddr
-    versions:
-    - 9.0.1
-  - dependency-name: aegir
-    versions:
-    - 31.0.0
-    - 31.0.1
-    - 33.0.0
