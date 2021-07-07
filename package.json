@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "lint": "aegir lint",
+    "lint": "aegir ts -p check && aegir lint",
     "build": "aegir build",
     "test": "aegir test",
     "test:node": "aegir test --target node",
@@ -29,14 +29,12 @@
   "bugs": "https://github.com/multiformats/js-mafmt/issues",
   "homepage": "https://github.com/multiformats/js-mafmt#readme",
   "devDependencies": {
-    "@types/chai": "^4.2.8",
-    "@types/mocha": "^8.0.0",
     "aegir": "^33.0.0",
     "uint8arrays": "^2.0.5",
     "util": "^0.12.3"
   },
   "dependencies": {
-    "multiaddr": "^9.0.1"
+    "multiaddr": "^10.0.0"
   },
   "files": [
     "src",
