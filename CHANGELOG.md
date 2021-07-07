@@ -1,3 +1,17 @@
+# [10.0.0](https://github.com/multiformats/js-mafmt/compare/v9.0.0...v10.0.0) (2021-07-07)
+
+
+### chore
+
+* upgrade multiaddr ([#81](https://github.com/multiformats/js-mafmt/issues/81)) ([2785b23](https://github.com/multiformats/js-mafmt/commit/2785b23d42fee537907ce3811ddce4ae107fc781))
+
+
+### BREAKING CHANGES
+
+* uses new major of multiaddr module
+
+
+
 # [9.0.0](https://github.com/multiformats/js-mafmt/compare/v8.0.4...v9.0.0) (2021-04-11)
 
 
