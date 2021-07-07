@@ -270,15 +270,19 @@ function base (n) {
    * @type {MatchesFunction}
    */
   function matches (a) {
-    if (typeof a === 'string') {
+    let ma
+
+    if (typeof a === 'string' || a instanceof Uint8Array) {
       try {
-        a = new Multiaddr(a)
+        ma = new Multiaddr(a)
       } catch (err) { // catch error
-        return false // also if it's invalid it's propably not matching as well so return false
+        return false // also if it's invalid it's probably not matching as well so return false
       }
+    } else {
+      ma = a
     }
 
-    const pnames = a.protoNames()
+    const pnames = ma.protoNames()
     if (pnames.length === 1 && pnames[0] === name) {
       return true
     }
