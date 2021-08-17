@@ -30,7 +30,7 @@
   "homepage": "https://github.com/multiformats/js-mafmt#readme",
   "devDependencies": {
     "aegir": "^33.0.0",
-    "uint8arrays": "^2.0.5",
+    "uint8arrays": "^3.0.0",
     "util": "^0.12.3"
   },
   "dependencies": {
