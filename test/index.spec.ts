@@ -1,12 +1,9 @@
 /* eslint-env mocha */
-
-'use strict'
-
-const { expect } = require('aegir/utils/chai')
-const { Multiaddr } = require('multiaddr')
-const { fromString: uint8ArrayFromString } = require('uint8arrays/from-string')
-
-const mafmt = require('./../src')
+import { expect } from 'aegir/utils/chai.js'
+import { Multiaddr } from '@multiformats/multiaddr'
+import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
+import * as mafmt from '../src/index.js'
+import type { Mafmt } from '../src/index.js'
 
 describe('multiaddr validation', function () {
   const goodDNS = [
@@ -190,11 +187,7 @@ describe('multiaddr validation', function () {
     '/dns6/nyc-2.bootstrap.libp2p.io/tcp/443/wss/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
   ].concat(goodCircuit)
 
-  /**
-   * @param {import('../').Mafmt} p
-   * @param {...string[]} tests
-   */
-  function assertMatches (p, ...tests) {
+  function assertMatches (p: Mafmt, ...tests: string[][]) {
     tests.forEach(function (test) {
       test.forEach(function (testcase) {
         try {
@@ -202,19 +195,15 @@ describe('multiaddr validation', function () {
           const ma = new Multiaddr(testcase)
           expect(p.matches(ma), `assertMatches: ${testcase} (multiaddr object)`).to.be.eql(true)
           expect(p.matches(ma.bytes), `assertMatches: ${testcase} (multiaddr.bytes)`).to.be.eql(true)
-        } catch (err) {
-          err.stack = '[testcase=' + JSON.stringify(testcase) + ', shouldMatch=true] ' + err.stack
+        } catch (err: any) {
+          err.stack = `[testcase=${JSON.stringify(testcase)}, shouldMatch=true] ${err.stack}` // eslint-disable-line @typescript-eslint/restrict-template-expressions
           throw err
         }
       })
     })
   }
 
-  /**
-   * @param {import('../').Mafmt} p
-   * @param {...string[]} tests
-   */
-  function assertMismatches (p, ...tests) {
+  function assertMismatches (p: Mafmt, ...tests: string[][]) {
     tests.forEach(function (test) {
       test.forEach(function (testcase) {
         try {
@@ -228,12 +217,12 @@ describe('multiaddr validation', function () {
             // Ignoring testcase as the string is not a multiaddr
             // (There is a separate 'Uint8Array is invalid' test later below)
           }
-          if (validMultiaddrObj) {
+          if (validMultiaddrObj != null) {
             expect(p.matches(validMultiaddrObj), `assertMismatches: ${testcase} (multiaddr object)`).to.be.eql(false)
             expect(p.matches(validMultiaddrObj.bytes), `assertMismatches: ${testcase} (multiaddr.bytes)`).to.be.eql(false)
           }
-        } catch (err) {
-          err.stack = '[testcase=' + JSON.stringify(testcase) + ', shouldMatch=false] ' + err.stack
+        } catch (err: any) {
+          err.stack = `[testcase=${JSON.stringify(testcase)}, shouldMatch=false] ${err.stack}` // eslint-disable-line @typescript-eslint/restrict-template-expressions
           throw err
         }
       })
