@@ -1,5 +1,4 @@
-js-mafmt
-========
+# js-mafmt
 
 [![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://protocol.ai)
 [![](https://img.shields.io/badge/project-multiformats-blue.svg?style=flat-square)](https://github.com/multiformats/multiformats)
@@ -10,20 +9,16 @@ js-mafmt
 
 > Javascript implementation of multiaddr validation
 
-## Lead Maintainer
-
-[Vasco Santos](https://github.com/vasco-santos).
-
 ## Install
 
 ```sh
-npm install mafmt
+npm install @multiformats/mafmt
 ```
 
 ## Usage
 
 ```js
-const mafmt = require('mafmt')
+import * as mafmt from 'multiformats/mafmt'
 
 mafmt.DNS.matches('/dns4/ipfs.io') // true
 ```
