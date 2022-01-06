@@ -1,9 +1,7 @@
 import { Multiaddr } from '@multiformats/multiaddr'
 
-// eslint-disable-next-line etc/prefer-interface
-export type MatchesFunction = (a: string | Uint8Array | Multiaddr) => boolean
-// eslint-disable-next-line etc/prefer-interface
-export type PartialMatchesFunction = (protos: string[]) => boolean | string[] | null
+export interface MatchesFunction { (a: string | Uint8Array | Multiaddr): boolean }
+export interface PartialMatchesFunction { (protos: string[]): boolean | string[] | null }
 
 export interface Mafmt {
   toString: () => string
