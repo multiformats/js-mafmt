@@ -1,3 +1,10 @@
+### [11.0.2](https://github.com/multiformats/js-mafmt/compare/v11.0.1...v11.0.2) (2022-01-08)
+
+
+### Trivial Changes
+
+* add semantic release config ([#97](https://github.com/multiformats/js-mafmt/issues/97)) ([af1a100](https://github.com/multiformats/js-mafmt/commit/af1a10075462c11004bebd2b133aee4ea96d0ba4))
+
 # [10.0.0](https://github.com/multiformats/js-mafmt/compare/v9.0.0...v10.0.0) (2021-07-07)
 
 
@@ -330,6 +337,3 @@
 
 <a name="2.0.0"></a>
 # 2.0.0 (2016-05-17)
-
-
-
