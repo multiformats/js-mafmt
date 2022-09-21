@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import { expect } from 'aegir/chai'
-import { Multiaddr } from '@multiformats/multiaddr'
+import { multiaddr } from '@multiformats/multiaddr'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import * as mafmt from '../src/index.js'
 import type { Mafmt } from '../src/index.js'
@@ -192,7 +192,7 @@ describe('multiaddr validation', function () {
       test.forEach(function (testcase) {
         try {
           expect(p.matches(testcase), `assertMatches: ${testcase} (string)`).to.be.eql(true)
-          const ma = new Multiaddr(testcase)
+          const ma = multiaddr(testcase)
           expect(p.matches(ma), `assertMatches: ${testcase} (multiaddr object)`).to.be.eql(true)
           expect(p.matches(ma.bytes), `assertMatches: ${testcase} (multiaddr.bytes)`).to.be.eql(true)
         } catch (err: any) {
@@ -212,7 +212,7 @@ describe('multiaddr validation', function () {
           try {
             // if testcase string happens to be a valid multiaddr,
             // we expect 'p' test to also return false for Multiaddr object and Uint8Array versions
-            validMultiaddrObj = new Multiaddr(testcase)
+            validMultiaddrObj = multiaddr(testcase)
           } catch (e) {
             // Ignoring testcase as the string is not a multiaddr
             // (There is a separate 'Uint8Array is invalid' test later below)
