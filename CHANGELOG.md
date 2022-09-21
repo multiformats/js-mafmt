@@ -1,3 +1,15 @@
+## [11.0.3](https://github.com/multiformats/js-mafmt/compare/v11.0.2...v11.0.3) (2022-09-21)
+
+
+### Trivial Changes
+
+* update project config ([#121](https://github.com/multiformats/js-mafmt/issues/121)) ([ceef343](https://github.com/multiformats/js-mafmt/commit/ceef343568d30080cdedf35edaa6365b1d031cd9))
+
+
+### Dependencies
+
+* update @multiformats/multiaddr to 11.0.0 ([#123](https://github.com/multiformats/js-mafmt/issues/123)) ([dc5a87f](https://github.com/multiformats/js-mafmt/commit/dc5a87f54c0e2a8e5857f9e0a5715b289cfe45d8))
+
 ### [11.0.2](https://github.com/multiformats/js-mafmt/compare/v11.0.1...v11.0.2) (2022-01-08)
 
 
