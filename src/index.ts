@@ -1,4 +1,5 @@
-import { Multiaddr } from '@multiformats/multiaddr'
+import { multiaddr } from '@multiformats/multiaddr'
+import type { Multiaddr } from '@multiformats/multiaddr'
 
 export interface MatchesFunction { (a: string | Uint8Array | Multiaddr): boolean }
 export interface PartialMatchesFunction { (protos: string[]): boolean | string[] | null }
@@ -137,9 +138,9 @@ function makeMatchesFunction (partialMatch: PartialMatchesFunction) {
     let ma
 
     try {
-      ma = new Multiaddr(a)
+      ma = multiaddr(a)
     } catch (err: any) { // catch error
-      return false // also if it's invalid it's propably not matching as well so return false
+      return false // also if it's invalid it's probably not matching as well so return false
     }
 
     const out = partialMatch(ma.protoNames())
@@ -226,7 +227,7 @@ function base (n: string): Mafmt {
     let ma: Multiaddr
 
     try {
-      ma = new Multiaddr(a)
+      ma = multiaddr(a)
     } catch (err: any) { // catch error
       return false // also if it's invalid it's probably not matching as well so return false
     }
