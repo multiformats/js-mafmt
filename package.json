@@ -141,7 +141,7 @@
     "@multiformats/multiaddr": "^11.0.0"
   },
   "devDependencies": {
-    "aegir": "^37.5.3",
+    "aegir": "^38.1.0",
     "uint8arrays": "^3.0.0",
     "util": "^0.12.3"
   }
