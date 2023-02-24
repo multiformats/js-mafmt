@@ -41,7 +41,9 @@ export const WebSockets = or(
 
 export const WebSocketsSecure = or(
   and(TCP, base('wss')),
-  and(DNS, base('wss'))
+  and(DNS, base('wss')),
+  and(TCP, base('tls'), base('ws')),
+  and(DNS, base('tls'), base('ws')),
 )
 
 export const HTTP = or(
