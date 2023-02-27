@@ -100,7 +100,10 @@ describe('multiaddr validation', function () {
   const goodWSS = [
     '/dnsaddr/ipfs.io/wss',
     '/ip4/1.2.3.4/tcp/3456/wss',
-    '/ip6/::/tcp/0/wss'
+    '/ip6/::/tcp/0/wss',
+    '/dnsaddr/ipfs.io/tls/ws',
+    '/ip4/1.2.3.4/tcp/3456/tls/ws',
+    '/ip6/::/tcp/0/tls/ws'
   ]
 
   const goodWebRTCStar = [
