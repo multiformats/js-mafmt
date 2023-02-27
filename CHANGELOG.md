@@ -1,3 +1,10 @@
+## [11.0.4](https://github.com/multiformats/js-mafmt/compare/v11.0.3...v11.0.4) (2023-02-27)
+
+
+### Bug Fixes
+
+* add /tls/ws as alias for /wss ([#141](https://github.com/multiformats/js-mafmt/issues/141)) ([05e0323](https://github.com/multiformats/js-mafmt/commit/05e03230a1518cb791271296160107ea9ba863d5))
+
 ## [11.0.3](https://github.com/multiformats/js-mafmt/compare/v11.0.2...v11.0.3) (2022-09-21)
 
 
