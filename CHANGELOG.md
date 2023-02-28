@@ -1,3 +1,10 @@
+## [11.1.0](https://github.com/multiformats/js-mafmt/compare/v11.0.4...v11.1.0) (2023-02-28)
+
+
+### Features
+
+* add webrtc addresses ([#130](https://github.com/multiformats/js-mafmt/issues/130)) ([d0ce7d7](https://github.com/multiformats/js-mafmt/commit/d0ce7d70283d6deaa074e2623eb751f4b12f15f5))
+
 ## [11.0.4](https://github.com/multiformats/js-mafmt/compare/v11.0.3...v11.0.4) (2023-02-27)
 
 
