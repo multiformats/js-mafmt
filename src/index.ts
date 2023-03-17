@@ -41,7 +41,9 @@ export const WebSockets = or(
 
 export const WebSocketsSecure = or(
   and(TCP, base('wss')),
-  and(DNS, base('wss'))
+  and(DNS, base('wss')),
+  and(TCP, base('tls'), base('ws')),
+  and(DNS, base('tls'), base('ws'))
 )
 
 export const HTTP = or(
@@ -54,6 +56,12 @@ export const HTTPS = or(
   and(TCP, base('https')),
   and(IP, base('https')),
   and(DNS, base('https'))
+)
+
+const _WebRTC = and(UDP, base('webrtc'), base('certhash'))
+export const WebRTC = or(
+  and(_WebRTC, base('p2p')),
+  _WebRTC
 )
 
 export const WebRTCStar = or(
@@ -87,7 +95,8 @@ export const Reliable = or(
   TCP,
   UTP,
   QUIC,
-  DNS
+  DNS,
+  WebRTC
 )
 
 // Unlike ws-star, stardust can run over any transport thus removing the requirement for websockets (but don't even think about running a stardust server over webrtc-star ;) )
@@ -100,6 +109,7 @@ const _P2P = or(
   and(Reliable, base('p2p')),
   WebRTCStar,
   WebRTCDirect,
+  WebRTC,
   base('p2p')
 )
 
@@ -112,7 +122,7 @@ const _Circuit = or(
   base('p2p-circuit')
 )
 
-const CircuitRecursive = () => or(
+const CircuitRecursive = (): Mafmt => or(
   and(_Circuit, CircuitRecursive),
   _Circuit
 )
@@ -133,7 +143,7 @@ export const IPFS = P2P
  * Validation funcs
  */
 
-function makeMatchesFunction (partialMatch: PartialMatchesFunction) {
+function makeMatchesFunction (partialMatch: PartialMatchesFunction): (a: string | Uint8Array | Multiaddr) => boolean {
   function matches (a: string | Uint8Array | Multiaddr): boolean {
     let ma
 
@@ -189,7 +199,7 @@ function and (...args: Array<Mafmt | (() => Mafmt)>): Mafmt {
     toString: function () { return '{ ' + args.join(' ') + ' }' },
     input: args,
     matches: makeMatchesFunction(partialMatch),
-    partialMatch: partialMatch
+    partialMatch
   }
 }
 
@@ -214,7 +224,7 @@ function or (...args: Array<Mafmt | (() => Mafmt)>): Mafmt {
     toString: function () { return '{ ' + args.join(' ') + ' }' },
     input: args,
     matches: makeMatchesFunction(partialMatch),
-    partialMatch: partialMatch
+    partialMatch
   }
 
   return result
@@ -223,7 +233,7 @@ function or (...args: Array<Mafmt | (() => Mafmt)>): Mafmt {
 function base (n: string): Mafmt {
   const name = n
 
-  function matches (a: string | Uint8Array | Multiaddr) {
+  function matches (a: string | Uint8Array | Multiaddr): boolean {
     let ma: Multiaddr
 
     try {
@@ -252,7 +262,7 @@ function base (n: string): Mafmt {
 
   return {
     toString: function () { return name },
-    matches: matches,
-    partialMatch: partialMatch
+    matches,
+    partialMatch
   }
 }

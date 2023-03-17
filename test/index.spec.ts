@@ -100,7 +100,10 @@ describe('multiaddr validation', function () {
   const goodWSS = [
     '/dnsaddr/ipfs.io/wss',
     '/ip4/1.2.3.4/tcp/3456/wss',
-    '/ip6/::/tcp/0/wss'
+    '/ip6/::/tcp/0/wss',
+    '/dnsaddr/ipfs.io/tls/ws',
+    '/ip4/1.2.3.4/tcp/3456/tls/ws',
+    '/ip6/::/tcp/0/tls/ws'
   ]
 
   const goodWebRTCStar = [
@@ -187,7 +190,18 @@ describe('multiaddr validation', function () {
     '/dns6/nyc-2.bootstrap.libp2p.io/tcp/443/wss/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
   ].concat(goodCircuit)
 
-  function assertMatches (p: Mafmt, ...tests: string[][]) {
+  const goodWebRTC = [
+    '/ip4/0.0.0.0/udp/4004/webrtc/certhash/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw',
+    '/ip4/0.0.0.0/udp/4004/webrtc/certhash/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
+  ]
+
+  const badWebRTC = [
+    '/ip4/0.0.0.0/udp/4004/webrtc',
+    '/ip4/0.0.0.0/tcp/4004/webrtc',
+    '/ip4/0.0.0.0/udp/4004/webrtc/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
+  ]
+
+  function assertMatches (p: Mafmt, ...tests: string[][]): void {
     tests.forEach(function (test) {
       test.forEach(function (testcase) {
         try {
@@ -203,7 +217,7 @@ describe('multiaddr validation', function () {
     })
   }
 
-  function assertMismatches (p: Mafmt, ...tests: string[][]) {
+  function assertMismatches (p: Mafmt, ...tests: string[][]): void {
     tests.forEach(function (test) {
       test.forEach(function (testcase) {
         try {
@@ -319,5 +333,10 @@ describe('multiaddr validation', function () {
 
   it('IPFS validation', function () {
     assertMatches(mafmt.IPFS, goodIPFS)
+  })
+
+  it('WebRTC validation', function () {
+    assertMatches(mafmt.WebRTC, goodWebRTC)
+    assertMismatches(mafmt.WebRTC, badWebRTC)
   })
 })
