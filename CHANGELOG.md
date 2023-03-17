@@ -1,3 +1,11 @@
+## [11.1.2](https://github.com/multiformats/js-mafmt/compare/v11.1.1...v11.1.2) (2023-03-17)
+
+
+### Dependencies
+
+* bump @multiformats/multiaddr from 11.6.1 to 12.0.0 ([#145](https://github.com/multiformats/js-mafmt/issues/145)) ([cb5c927](https://github.com/multiformats/js-mafmt/commit/cb5c92712bcd1f75139e68d91286bd4e820e6ec1))
+* **dev:** bump uint8arrays from 3.1.1 to 4.0.3 ([#131](https://github.com/multiformats/js-mafmt/issues/131)) ([60146ce](https://github.com/multiformats/js-mafmt/commit/60146ce3af87aaa159a35a1d7632c887e9d982eb))
+
 ## [11.1.1](https://github.com/multiformats/js-mafmt/compare/v11.1.0...v11.1.1) (2023-03-17)
 
 
