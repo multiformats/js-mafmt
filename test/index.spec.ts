@@ -201,7 +201,7 @@ describe('multiaddr validation', function () {
     '/ip4/0.0.0.0/udp/4004/webrtc/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
   ]
 
-  function assertMatches (p: Mafmt, ...tests: string[][]) {
+  function assertMatches (p: Mafmt, ...tests: string[][]): void {
     tests.forEach(function (test) {
       test.forEach(function (testcase) {
         try {
@@ -217,7 +217,7 @@ describe('multiaddr validation', function () {
     })
   }
 
-  function assertMismatches (p: Mafmt, ...tests: string[][]) {
+  function assertMismatches (p: Mafmt, ...tests: string[][]): void {
     tests.forEach(function (test) {
       test.forEach(function (testcase) {
         try {

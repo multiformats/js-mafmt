@@ -122,7 +122,7 @@ const _Circuit = or(
   base('p2p-circuit')
 )
 
-const CircuitRecursive = () => or(
+const CircuitRecursive = (): Mafmt => or(
   and(_Circuit, CircuitRecursive),
   _Circuit
 )
@@ -143,7 +143,7 @@ export const IPFS = P2P
  * Validation funcs
  */
 
-function makeMatchesFunction (partialMatch: PartialMatchesFunction) {
+function makeMatchesFunction (partialMatch: PartialMatchesFunction): (a: string | Uint8Array | Multiaddr) => boolean {
   function matches (a: string | Uint8Array | Multiaddr): boolean {
     let ma
 
@@ -199,7 +199,7 @@ function and (...args: Array<Mafmt | (() => Mafmt)>): Mafmt {
     toString: function () { return '{ ' + args.join(' ') + ' }' },
     input: args,
     matches: makeMatchesFunction(partialMatch),
-    partialMatch: partialMatch
+    partialMatch
   }
 }
 
@@ -224,7 +224,7 @@ function or (...args: Array<Mafmt | (() => Mafmt)>): Mafmt {
     toString: function () { return '{ ' + args.join(' ') + ' }' },
     input: args,
     matches: makeMatchesFunction(partialMatch),
-    partialMatch: partialMatch
+    partialMatch
   }
 
   return result
@@ -233,7 +233,7 @@ function or (...args: Array<Mafmt | (() => Mafmt)>): Mafmt {
 function base (n: string): Mafmt {
   const name = n
 
-  function matches (a: string | Uint8Array | Multiaddr) {
+  function matches (a: string | Uint8Array | Multiaddr): boolean {
     let ma: Multiaddr
 
     try {
@@ -262,7 +262,7 @@ function base (n: string): Mafmt {
 
   return {
     toString: function () { return name },
-    matches: matches,
-    partialMatch: partialMatch
+    matches,
+    partialMatch
   }
 }
