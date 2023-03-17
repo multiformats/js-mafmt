@@ -58,7 +58,7 @@ export const HTTPS = or(
   and(DNS, base('https'))
 )
 
-const _WebRTC = and(UDP, base('webrtc'), base('certhash'))
+const _WebRTC = and(UDP, base('webrtc-direct'), base('certhash'))
 export const WebRTC = or(
   and(_WebRTC, base('p2p')),
   _WebRTC

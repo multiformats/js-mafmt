@@ -191,14 +191,14 @@ describe('multiaddr validation', function () {
   ].concat(goodCircuit)
 
   const goodWebRTC = [
-    '/ip4/0.0.0.0/udp/4004/webrtc/certhash/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw',
-    '/ip4/0.0.0.0/udp/4004/webrtc/certhash/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
+    '/ip4/0.0.0.0/udp/4004/webrtc-direct/certhash/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw',
+    '/ip4/0.0.0.0/udp/4004/webrtc-direct/certhash/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
   ]
 
   const badWebRTC = [
-    '/ip4/0.0.0.0/udp/4004/webrtc',
-    '/ip4/0.0.0.0/tcp/4004/webrtc',
-    '/ip4/0.0.0.0/udp/4004/webrtc/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
+    '/ip4/0.0.0.0/udp/4004/webrtc-direct',
+    '/ip4/0.0.0.0/tcp/4004/webrtc-direct',
+    '/ip4/0.0.0.0/udp/4004/webrtc-direct/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
   ]
 
   function assertMatches (p: Mafmt, ...tests: string[][]) {
