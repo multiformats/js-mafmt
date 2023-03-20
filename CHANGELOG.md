@@ -1,3 +1,14 @@
+## [12.0.0](https://github.com/multiformats/js-mafmt/compare/v11.1.2...v12.0.0) (2023-03-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* the existing WebRTCDirect multicodec name has been deprecated and renamed P2PWebRTCDirect. The new WebRTCDirect codec has been added but is not the same, please check your code before upgrading!  Integer codes are unchanged.
+
+### Bug Fixes
+
+* Rename WebRTCDirect to P2PWebRTCDirect and deprecate ([#146](https://github.com/multiformats/js-mafmt/issues/146)) ([92f92d7](https://github.com/multiformats/js-mafmt/commit/92f92d7841c26c149bce2b6b3c0026507fd318ed))
+
 ## [11.1.2](https://github.com/multiformats/js-mafmt/compare/v11.1.1...v11.1.2) (2023-03-17)
 
 
