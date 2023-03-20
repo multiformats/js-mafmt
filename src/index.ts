@@ -58,13 +58,16 @@ export const HTTPS = or(
   and(DNS, base('https'))
 )
 
-const _WebRTC = and(UDP, base('webrtc'), base('certhash'))
-export const WebRTC = or(
-  and(_WebRTC, base('p2p')),
-  _WebRTC
+const _WebRTCDirect = and(UDP, base('webrtc-direct'), base('certhash'))
+export const WebRTCDirect = or(
+  and(_WebRTCDirect, base('p2p')),
+  _WebRTCDirect
 )
 
-export const WebRTCStar = or(
+/**
+ * @deprecated
+ */
+export const P2PWebRTCStar = or(
   and(WebSockets, base('p2p-webrtc-star'), base('p2p')),
   and(WebSocketsSecure, base('p2p-webrtc-star'), base('p2p')),
   and(WebSockets, base('p2p-webrtc-star')),
@@ -78,7 +81,10 @@ export const WebSocketStar = or(
   and(WebSocketsSecure, base('p2p-websocket-star'))
 )
 
-export const WebRTCDirect = or(
+/**
+ * @deprecated
+ */
+export const P2PWebRTCDirect = or(
   and(HTTP, base('p2p-webrtc-direct'), base('p2p')),
   and(HTTPS, base('p2p-webrtc-direct'), base('p2p')),
   and(HTTP, base('p2p-webrtc-direct')),
@@ -90,13 +96,13 @@ export const Reliable = or(
   WebSocketsSecure,
   HTTP,
   HTTPS,
-  WebRTCStar,
-  WebRTCDirect,
+  P2PWebRTCStar,
+  P2PWebRTCDirect,
   TCP,
   UTP,
   QUIC,
   DNS,
-  WebRTC
+  WebRTCDirect
 )
 
 // Unlike ws-star, stardust can run over any transport thus removing the requirement for websockets (but don't even think about running a stardust server over webrtc-star ;) )
@@ -107,9 +113,9 @@ export const Stardust = or(
 
 const _P2P = or(
   and(Reliable, base('p2p')),
-  WebRTCStar,
+  P2PWebRTCStar,
+  P2PWebRTCDirect,
   WebRTCDirect,
-  WebRTC,
   base('p2p')
 )
 
@@ -138,6 +144,12 @@ export const P2P = or(
 )
 
 export const IPFS = P2P
+
+export const WebRTC = or(
+  and(Circuit, base('webrtc')),
+  and(Reliable, base('webrtc')),
+  base('webrtc')
+)
 
 /*
  * Validation funcs

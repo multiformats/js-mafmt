@@ -106,7 +106,7 @@ describe('multiaddr validation', function () {
     '/ip6/::/tcp/0/tls/ws'
   ]
 
-  const goodWebRTCStar = [
+  const goodP2PWebRTCStar = [
     '/ip4/1.2.3.4/tcp/3456/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/dnsaddr/ipfs.io/ws/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
     '/dnsaddr/ipfs.io/wss/p2p-webrtc-star/ipfs/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4',
@@ -118,7 +118,7 @@ describe('multiaddr validation', function () {
     '/dns/wrtc-star.discovery.libp2p.io/tcp/443/wss/p2p-webrtc-star/ipfs/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79'
   ]
 
-  const goodWebRTCDirect = [
+  const goodP2PWebRTCDirect = [
     '/ip4/1.2.3.4/tcp/3456/http/p2p-webrtc-direct',
     '/ip6/::/tcp/0/http/p2p-webrtc-direct'
   ]
@@ -190,15 +190,26 @@ describe('multiaddr validation', function () {
     '/dns6/nyc-2.bootstrap.libp2p.io/tcp/443/wss/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
   ].concat(goodCircuit)
 
+  const goodWebRTCDirect = [
+    '/ip4/0.0.0.0/udp/4004/webrtc-direct/certhash/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw',
+    '/ip4/0.0.0.0/udp/4004/webrtc-direct/certhash/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
+  ]
+
+  const badWebRTCDirect = [
+    '/ip4/0.0.0.0/udp/4004/webrtc-direct',
+    '/ip4/0.0.0.0/tcp/4004/webrtc-direct',
+    '/ip4/0.0.0.0/udp/4004/webrtc-direct/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
+  ]
+
   const goodWebRTC = [
-    '/ip4/0.0.0.0/udp/4004/webrtc/certhash/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw',
-    '/ip4/0.0.0.0/udp/4004/webrtc/certhash/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
+    '/ip4/0.0.0.0/udp/4004/webrtc-direct/certhash/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw/webrtc',
+    '/p2p-circuit/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/webrtc',
+    '/webrtc'
   ]
 
   const badWebRTC = [
-    '/ip4/0.0.0.0/udp/4004/webrtc',
-    '/ip4/0.0.0.0/tcp/4004/webrtc',
-    '/ip4/0.0.0.0/udp/4004/webrtc/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw/p2p/QmSoLV4Bbm51jM9C4gDYZQ9Cy3U6aXMJDAbzgu2fzaDs64'
+    '/ip4/0.0.0.0/udp/webrtc',
+    '/ip4/0.0.0.0/tcp/12345/udp/2222/wss/webrtc'
   ]
 
   function assertMatches (p: Mafmt, ...tests: string[][]): void {
@@ -316,14 +327,14 @@ describe('multiaddr validation', function () {
     assertMismatches(mafmt.Stardust, goodIP, goodUDP, badWS)
   })
 
-  it('WebRTCStar validation', function () {
-    assertMatches(mafmt.WebRTCStar, goodWebRTCStar)
-    assertMismatches(mafmt.WebRTCStar, goodIP, goodUDP, badWSS)
+  it('P2PWebRTCStar validation', function () {
+    assertMatches(mafmt.P2PWebRTCStar, goodP2PWebRTCStar)
+    assertMismatches(mafmt.P2PWebRTCStar, goodIP, goodUDP, badWSS)
   })
 
-  it('WebRTCDirect validation', function () {
-    assertMatches(mafmt.WebRTCDirect, goodWebRTCDirect)
-    assertMismatches(mafmt.WebRTCDirect, goodIP, goodUDP, badWS)
+  it('P2PWebRTCDirect validation', function () {
+    assertMatches(mafmt.P2PWebRTCDirect, goodP2PWebRTCDirect)
+    assertMismatches(mafmt.P2PWebRTCDirect, goodIP, goodUDP, badWS)
   })
 
   it('Circuit validation', function () {
@@ -333,6 +344,11 @@ describe('multiaddr validation', function () {
 
   it('IPFS validation', function () {
     assertMatches(mafmt.IPFS, goodIPFS)
+  })
+
+  it('WebRTCDirect validation', function () {
+    assertMatches(mafmt.WebRTCDirect, goodWebRTCDirect)
+    assertMismatches(mafmt.WebRTCDirect, badWebRTCDirect)
   })
 
   it('WebRTC validation', function () {
