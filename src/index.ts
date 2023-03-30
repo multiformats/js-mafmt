@@ -33,6 +33,7 @@ export const UDP = and(IP, base('udp'))
 export const UTP = and(UDP, base('utp'))
 
 export const QUIC = and(UDP, base('quic'))
+export const QUICV1 = and(UDP, base('quic-v1'))
 
 export const WebSockets = or(
   and(TCP, base('ws')),
@@ -149,6 +150,12 @@ export const WebRTC = or(
   and(Circuit, base('webrtc')),
   and(Reliable, base('webrtc')),
   base('webrtc')
+)
+
+const _WebTransport = and(QUICV1, base('webtransport'), base('certhash'), base('certhash'))
+export const WebTransport = or(
+  and(_WebTransport, base('p2p')),
+  _WebTransport
 )
 
 /*
