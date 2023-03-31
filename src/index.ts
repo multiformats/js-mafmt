@@ -65,6 +65,12 @@ export const WebRTCDirect = or(
   _WebRTCDirect
 )
 
+const _WebTransport = and(QUICV1, base('webtransport'), base('certhash'), base('certhash'))
+export const WebTransport = or(
+  and(_WebTransport, base('p2p')),
+  _WebTransport
+)
+
 /**
  * @deprecated
  */
@@ -103,7 +109,8 @@ export const Reliable = or(
   UTP,
   QUIC,
   DNS,
-  WebRTCDirect
+  WebRTCDirect,
+  WebTransport
 )
 
 // Unlike ws-star, stardust can run over any transport thus removing the requirement for websockets (but don't even think about running a stardust server over webrtc-star ;) )
@@ -117,6 +124,7 @@ const _P2P = or(
   P2PWebRTCStar,
   P2PWebRTCDirect,
   WebRTCDirect,
+  WebTransport,
   base('p2p')
 )
 
@@ -150,12 +158,6 @@ export const WebRTC = or(
   and(Circuit, base('webrtc')),
   and(Reliable, base('webrtc')),
   base('webrtc')
-)
-
-const _WebTransport = and(QUICV1, base('webtransport'), base('certhash'), base('certhash'))
-export const WebTransport = or(
-  and(_WebTransport, base('p2p')),
-  _WebTransport
 )
 
 /*
