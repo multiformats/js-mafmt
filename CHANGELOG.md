@@ -1,3 +1,10 @@
+## [12.1.0](https://github.com/multiformats/js-mafmt/compare/v12.0.0...v12.1.0) (2023-04-03)
+
+
+### Features
+
+* support webtransport multiaddrs ([#148](https://github.com/multiformats/js-mafmt/issues/148)) ([20076b1](https://github.com/multiformats/js-mafmt/commit/20076b1e4e0e81249aaab72d63bbc7422c3a9b9e))
+
 ## [12.0.0](https://github.com/multiformats/js-mafmt/compare/v11.1.2...v12.0.0) (2023-03-20)
 
 
