@@ -15,8 +15,8 @@
     "multiaddr"
   ],
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=8.6.0"
   },
   "type": "module",
   "types": "./dist/src/index.d.ts",
@@ -143,7 +143,6 @@
   },
   "devDependencies": {
     "aegir": "^39.0.6",
-    "uint8arrays": "^4.0.3",
-    "util": "^0.12.3"
+    "uint8arrays": "^4.0.3"
   }
 }
