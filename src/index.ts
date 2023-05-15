@@ -155,7 +155,9 @@ export const P2P = or(
 export const IPFS = P2P
 
 export const WebRTC = or(
+  and(Circuit, base('webrtc'), base('p2p')),
   and(Circuit, base('webrtc')),
+  and(Reliable, base('webrtc'), base('p2p')),
   and(Reliable, base('webrtc')),
   base('webrtc')
 )
