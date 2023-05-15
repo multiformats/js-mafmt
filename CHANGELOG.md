@@ -1,3 +1,10 @@
+## [12.1.2](https://github.com/multiformats/js-mafmt/compare/v12.1.1...v12.1.2) (2023-05-15)
+
+
+### Dependencies
+
+* **dev:** bump aegir from 38.1.8 to 39.0.6 ([#152](https://github.com/multiformats/js-mafmt/issues/152)) ([72bdf8e](https://github.com/multiformats/js-mafmt/commit/72bdf8e0d1456236c8e1c17ce01b21592f628dcb))
+
 ## [12.1.1](https://github.com/multiformats/js-mafmt/compare/v12.1.0...v12.1.1) (2023-05-15)
 
 
