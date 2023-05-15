@@ -1,3 +1,10 @@
+## [12.1.1](https://github.com/multiformats/js-mafmt/compare/v12.1.0...v12.1.1) (2023-05-15)
+
+
+### Bug Fixes
+
+* match complete webRTC address ([#153](https://github.com/multiformats/js-mafmt/issues/153)) ([9335539](https://github.com/multiformats/js-mafmt/commit/9335539d675f568f3f043b150c07f21b815430c7))
+
 ## [12.1.0](https://github.com/multiformats/js-mafmt/compare/v12.0.0...v12.1.0) (2023-04-03)
 
 
