@@ -1,6 +1,6 @@
 /* eslint-env mocha */
-import { expect } from 'aegir/chai'
 import { multiaddr } from '@multiformats/multiaddr'
+import { expect } from 'aegir/chai'
 import { fromString as uint8ArrayFromString } from 'uint8arrays/from-string'
 import * as mafmt from '../src/index.js'
 import type { Mafmt } from '../src/index.js'
