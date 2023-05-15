@@ -202,6 +202,7 @@ describe('multiaddr validation', function () {
   ]
 
   const goodWebRTC = [
+    '/ip4/127.0.0.1/tcp/59119/ws/p2p/12D3KooWAzabxK2xhwGQuTUYjbcFT9SZcNvPS1cvj7bPMe2Rh9qF/p2p-circuit/webrtc/p2p/12D3KooWA6L4J1yRwqLwdXPZBxz3UL4E8pEE6AEhFkqDH5LTQyfq',
     '/ip4/0.0.0.0/udp/4004/webrtc-direct/certhash/uEiAeP0OEmBbGVTH5Bhnm3WopwRNSQ0et46xNkn2dIagnGw/webrtc',
     '/p2p-circuit/p2p/QmcgpsyWgH8Y8ajJz1Cu72KnS5uo2Aa2LpzU7kinSoooo4/webrtc',
     '/webrtc'
