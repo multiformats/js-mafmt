@@ -14,10 +14,6 @@
   "keywords": [
     "multiaddr"
   ],
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.6.0"
-  },
   "type": "module",
   "types": "./dist/src/index.d.ts",
   "files": [
