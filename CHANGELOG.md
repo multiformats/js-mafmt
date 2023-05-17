@@ -1,3 +1,10 @@
+## [12.1.3](https://github.com/multiformats/js-mafmt/compare/v12.1.2...v12.1.3) (2023-05-17)
+
+
+### Bug Fixes
+
+* remove engines field ([#155](https://github.com/multiformats/js-mafmt/issues/155)) ([a464023](https://github.com/multiformats/js-mafmt/commit/a464023d87610f5c079c0b5ba234d0b373503a0b))
+
 ## [12.1.2](https://github.com/multiformats/js-mafmt/compare/v12.1.1...v12.1.2) (2023-05-15)
 
 
