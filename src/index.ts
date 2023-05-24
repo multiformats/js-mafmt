@@ -40,7 +40,7 @@ const _WebSockets = or(
   and(DNS, base('ws'))
 )
 
-export const WebSockets =  or(
+export const WebSockets = or(
   _WebSockets,
   and(_WebSockets, base('p2p'))
 )
