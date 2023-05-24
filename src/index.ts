@@ -35,16 +35,26 @@ export const UTP = and(UDP, base('utp'))
 export const QUIC = and(UDP, base('quic'))
 export const QUICV1 = and(UDP, base('quic-v1'))
 
-export const WebSockets = or(
+const _WebSockets = or(
   and(TCP, base('ws')),
   and(DNS, base('ws'))
 )
 
-export const WebSocketsSecure = or(
+export const WebSockets =  or(
+  _WebSockets,
+  and(_WebSockets, base('p2p'))
+)
+
+const _WebSocketsSecure = or(
   and(TCP, base('wss')),
   and(DNS, base('wss')),
   and(TCP, base('tls'), base('ws')),
   and(DNS, base('tls'), base('ws'))
+)
+
+export const WebSocketsSecure = or(
+  _WebSocketsSecure,
+  and(_WebSocketsSecure, base('p2p'))
 )
 
 export const HTTP = or(
@@ -99,8 +109,8 @@ export const P2PWebRTCDirect = or(
 )
 
 export const Reliable = or(
-  WebSockets,
-  WebSocketsSecure,
+  _WebSockets,
+  _WebSocketsSecure,
   HTTP,
   HTTPS,
   P2PWebRTCStar,
