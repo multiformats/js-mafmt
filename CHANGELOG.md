@@ -1,3 +1,10 @@
+## [12.1.5](https://github.com/multiformats/js-mafmt/compare/v12.1.4...v12.1.5) (2023-06-01)
+
+
+### Bug Fixes
+
+* add test cases for [#156](https://github.com/multiformats/js-mafmt/issues/156) ([d780138](https://github.com/multiformats/js-mafmt/commit/d7801389ad8deb9ea263fe3603730429c2722afb))
+
 ## [12.1.4](https://github.com/multiformats/js-mafmt/compare/v12.1.3...v12.1.4) (2023-06-01)
 
 
