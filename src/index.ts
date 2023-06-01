@@ -41,8 +41,8 @@ const _WebSockets = or(
 )
 
 export const WebSockets = or(
-  _WebSockets,
-  and(_WebSockets, base('p2p'))
+  and(_WebSockets, base('p2p')),
+  _WebSockets
 )
 
 const _WebSocketsSecure = or(
@@ -53,8 +53,8 @@ const _WebSocketsSecure = or(
 )
 
 export const WebSocketsSecure = or(
-  _WebSocketsSecure,
-  and(_WebSocketsSecure, base('p2p'))
+  and(_WebSocketsSecure, base('p2p')),
+  _WebSocketsSecure
 )
 
 export const HTTP = or(

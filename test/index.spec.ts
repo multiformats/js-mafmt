@@ -93,17 +93,38 @@ describe('multiaddr validation', function () {
 
   const goodWS = [
     '/dnsaddr/ipfs.io/ws',
+    '/dns4/ipfs.io/ws',
+    '/dns6/ipfs.io/ws',
     '/ip4/1.2.3.4/tcp/3456/ws',
-    '/ip6/::/tcp/0/ws'
+    '/ip6/::/tcp/0/ws',
+    '/dnsaddr/ipfs.io/ws/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/dns4/ipfs.io/ws/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/dns6/ipfs.io/ws/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/ip4/1.2.3.4/tcp/3456/ws/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/ip6/::/tcp/3456/ws/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79'
   ]
 
   const goodWSS = [
     '/dnsaddr/ipfs.io/wss',
+    '/dns4/ipfs.io/wss',
+    '/dns6/ipfs.io/wss',
     '/ip4/1.2.3.4/tcp/3456/wss',
     '/ip6/::/tcp/0/wss',
     '/dnsaddr/ipfs.io/tls/ws',
+    '/dns4/ipfs.io/tls/ws',
+    '/dns6/ipfs.io/tls/ws',
     '/ip4/1.2.3.4/tcp/3456/tls/ws',
-    '/ip6/::/tcp/0/tls/ws'
+    '/ip6/::/tcp/0/tls/ws',
+    '/dnsaddr/ipfs.io/wss/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/dns4/ipfs.io/wss/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/dns6/ipfs.io/wss/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/ip4/1.2.3.4/tcp/3456/wss/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/ip6/::/tcp/3456/wss/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/dnsaddr/ipfs.io/tls/ws/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/dns4/ipfs.io/tls/ws/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/dns6/ipfs.io/tls/ws/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/ip4/1.2.3.4/tcp/3456/tls/ws/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79',
+    '/ip6/::/tcp/3456/tls/ws/p2p/QmTysQQiTGMdfRsDQp516oZ9bR3FiSCDnicUnqny2q1d79'
   ]
 
   const goodP2PWebRTCStar = [
