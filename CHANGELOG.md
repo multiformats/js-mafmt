@@ -1,3 +1,10 @@
+## [12.1.4](https://github.com/multiformats/js-mafmt/compare/v12.1.3...v12.1.4) (2023-06-01)
+
+
+### Bug Fixes
+
+* match websocket addresses that include a peer id ([#156](https://github.com/multiformats/js-mafmt/issues/156)) ([080936f](https://github.com/multiformats/js-mafmt/commit/080936f3d44f13b948d14c9fb3b234b036f563ce))
+
 ## [12.1.3](https://github.com/multiformats/js-mafmt/compare/v12.1.2...v12.1.3) (2023-05-17)
 
 
