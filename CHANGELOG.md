@@ -157,7 +157,7 @@
 
 ### Features
 
-* add dnsnaddr p2p ([95d5178](https://github.com/multiformats/js-mafmt/commit/95d5178))
+* add dnsaddr p2p ([95d5178](https://github.com/multiformats/js-mafmt/commit/95d5178))
 
 
 ### BREAKING CHANGES
